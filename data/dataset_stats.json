@@ -1,0 +1,18 @@
+{
+  "total": 100,
+  "by_satisfaction": {
+    "satisfied": 50,
+    "neutral": 8,
+    "unsatisfied": 42
+  },
+  "by_intent": {
+    "refund_request": 13,
+    "account_access": 19,
+    "other": 39,
+    "payment_issue": 20,
+    "technical_error": 8,
+    "tariff_question": 1
+  },
+  "hidden_dissatisfaction": 5,
+  "with_mistakes": 47
+}

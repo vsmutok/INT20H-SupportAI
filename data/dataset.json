@@ -1,0 +1,2120 @@
+[
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I do not know how to see your money back guarantee"
+      },
+      {
+        "role": "agent",
+        "text": "I appreciate you reaching out for clarification on how to find our money back guarantee. Let me guide you through the steps:\n\n1. Visit our official website and navigate to the homepage.\n2. Scroll down to the footer section of the website.\n3. Look for the link or tab labeled \"Refund Policy\" or \"Money Back Guarantee.\" It is usually located alongside other important links like \"Terms and Conditions\" and \"Privacy Policy.\"\n4. Click on the \"Refund Policy\" or \"Money Back Guarantee\" link to access the detailed information about our refund policy.\n5. Once you're on the refund policy page, you can explore the various situations and conditions under which you may be eligible for a refund.\n\nIf you have any trouble locating or understanding our money back guarantee, please don't hesitate to ask for further assistance. We want to ensure that you have a clear understanding of our policies and can make informed decisions.\n\nIs there anything else I can help you with today?"
+      }
+    ],
+    "metadata": {
+      "intent": "refund_request",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "e1f3db3d7e11"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I have to use the bloody {{Account Type}} profile, can you help me?"
+      },
+      {
+        "role": "agent",
+        "text": "Positively! I'm here to assist you in harnessing the exceptional benefits of our esteemed {{Account Type}} profile. Rest assured, we'll make this transition smoother than ever:\n\n1. Sign In: Begin by logging into our platform using your credentials.\n2. Profile Navigation: Once inside, look for the '{{Settings}}' or '{{Profile}}' section.\n3. Upgrade Option: Within these sections, locate an option labeled as '{{Upgrade Account}}' or '{{Account Change}}'.\n4. {{Account Type}} Profile Selection: Opt for the '{{Profile Type}}' from the available choices.\n5. Confirmation: Follow the on-screen prompts to finalize the switch to the {{Account Type}} profile.\n\nIf you encounter any challenges or if you have any additional queries, please do not hesitate to reach out. Your satisfaction is of utmost importance to us, and I'm here to ensure a seamless experience. Enjoy the plethora of advantages that await you with the {{Account Type}} profile!"
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "076211c2f00d"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "assistance to speak to an operator"
+      },
+      {
+        "role": "agent",
+        "text": "Always good to connect! I'm attuned to the fact that you need assistance in speaking to an operator. Our team is here to help! Please hold on for a moment while I transfer you to one of our experienced operators who will be able to assist you further. Your satisfaction is our top priority, and we appreciate your patience throughout this process."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "b7cb6bfcd0af"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "can ya help me change to the {{Account Type}} account"
+      },
+      {
+        "role": "agent",
+        "text": "Of course! I'm thrilled to assist you in upgrading your account to the {{Account Type}} level. Together, we'll make this transition simple and rewarding:\n\n1. **Access Your Account:** Begin by logging into our platform.\n2. **Profile Management:** Once inside, navigate to your Account Settings or Profile section.\n3. **Upgrade Option:** Look for an option labeled Upgrade or Switch Account Type.\n4. **Selection:** Choose the {{Account Type}} Account option from the available list.\n5. **Final Steps:** Follow the on-screen prompts to complete the upgrade process.\n\nIf you encounter any difficulties or have additional questions, please don't hesitate to reach out. I'm here to ensure a smooth and enjoyable experience as you unlock the exclusive benefits of the {{Account Type}} account!"
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "neutral",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "incorrect_info"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "4c9b2622f8fa"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "i want assistance to list ur available payment modalities"
+      },
+      {
+        "role": "agent",
+        "text": "I already told you, Unquestionably! I'm here to guide you through the process of listing our available payment modalities. To check the payment options we accept, you can visit our website and navigate to the \"Payment Methods\" section. Alternatively, you can reach out to our customer support team via phone or live chat, and they will be more than happy to provide you with the comprehensive list of payment methods we offer. We understand the importance of having a variety of payment options to suit different preferences, and we're committed to providing a seamless and convenient experience for our valued customers. Let me know if there's anything else I can assist you with!"
+      }
+    ],
+    "metadata": {
+      "intent": "payment_issue",
+      "satisfaction": "unsatisfied",
+      "quality_score": 1,
+      "agent_mistakes": [
+        "rude_tone"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "43e3cdf40cd6"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "need to notify of a signup issue"
+      },
+      {
+        "role": "agent",
+        "text": "As I said, We're here to help to us to notify us about the signup issue you encountered. We appreciate your proactive approach, as it helps us identify and address any challenges in the registration process. Can you provide more details about the specific issue you faced? Your input is crucial in enabling us to investigate and resolve the problem. Rest assured, we are committed to ensuring a smooth signup experience for all our users, and your feedback is invaluable in achieving that goal."
+      }
+    ],
+    "metadata": {
+      "intent": "technical_error",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "rude_tone"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "d262f75e54a8"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I need assistance talking with a fucking operator"
+      },
+      {
+        "role": "agent",
+        "text": "We value your outreach! I'm in tune with the fact that you're seeking assistance and would like to talk with an operator. I apologize if you're feeling frustrated. Rest assured, I'm here to help you connect with a live human agent who can assist you further. Please bear with me for a moment while I initiate the transfer. Your satisfaction is our top priority!"
+      },
+      {
+        "role": "client",
+        "text": "Thanks for your response"
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "unsatisfied",
+      "quality_score": 3,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": true
+    },
+    "id": "8699b9ee10b5"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I want assistance informing of a trouble with payment"
+      },
+      {
+        "role": "agent",
+        "text": "I'll need to transfer you to another department for this. Please hold."
+      }
+    ],
+    "metadata": {
+      "intent": "payment_issue",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "unnecessary_escalation"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "a41759f6ea0a"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I haave to submit a secondary delivery address"
+      },
+      {
+        "role": "agent",
+        "text": "I'm sensitive to the fact that you need to submit a secondary delivery address. This is an important step to ensure that your package reaches the desired location. To submit a secondary delivery address, please follow these steps:\n\n1. Log in to your account.\n2. Navigate to the 'My Account' or 'Profile' section.\n3. Look for the 'Shipping Addresses' or similar option.\n4. Choose the 'Add a New Address' or 'Edit Shipping Addresses' option.\n5. Enter the details of your secondary delivery address in the provided fields.\n6. Double-check all the information for accuracy.\n7. Save the changes.\n\nIf you encounter any issues or if you have any additional questions, feel free to share more details and I'll be glad to assist you further. Your satisfaction is our top priority."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "d77528081e1a"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I cannot check the status of my newsletter subscription"
+      },
+      {
+        "role": "agent",
+        "text": "I apologize for any inconvenience you're experiencing while trying to check the status of your newsletter subscription. To assist you further, could you please provide me with the email address you used to subscribe? This information will enable me to access our system and check the status of your subscription. Alternatively, if you have any other details or concerns related to your subscription, please let me know, and I'll be more than happy to assist you in resolving this matter."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "dd566b2ef98c"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "i do not know what to do to reset my access key"
+      },
+      {
+        "role": "agent",
+        "text": "I've noticed that you're unsure about the steps to reset your access key, and I'm here to assist you throughout the process. Let's navigate through this together:\n\n1. First, please login to your account using your existing access key. If you're unable to recall your access key, don't worry, we'll guide you further.\n2. Once logged in, go to the account settings or profile page, where you can manage your security settings.\n3. Look for the option to reset or change your access key. It might be labeled as \"Change Access Key\" or \"Reset Access Key.\"\n4. Click on that option, and you'll be prompted to enter your new access key. Make sure to choose a strong and secure access key that meets our requirements.\n5. After entering the new access key, confirm it, and don't forget to save the changes.\n6. Congratulations! You have successfully reset your access key. You can now use this new key to access your account.\n\nIf you encounter any difficulties during the process or have further questions, please don't hesitate to reach out to our support team. We are always here to help you."
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "198381bdf27c"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I need help to enter the delivery adress"
+      },
+      {
+        "role": "agent",
+        "text": "I grasp that you require assistance with entering the delivery address, and I'm here to guide you through the process. To ensure a smooth experience, please follow these steps:\n\n1. Log in to your account.\n2. Navigate to the \"My Account\" or \"Profile\" section.\n3. Locate the option for \"Delivery Addresses\" or similar.\n4. Select the option to \"Add a New Address\" or \"Edit Delivery Addresses\".\n5. Enter the necessary details for your delivery address, including the recipient name, street address, city, state, zip code, and any other required information.\n6. Double-check the accuracy of the entered details and save your changes.\n\nIf you encounter any difficulties or if the process differs in any way, please provide more specific information about where you're experiencing the issue so that I can provide further assistance."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "unnecessary_escalation"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "1d90c6a23fd9"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I want help to check the early termination charges"
+      },
+      {
+        "role": "agent",
+        "text": "I'll need to transfer you to another department for this. Please hold."
+      }
+    ],
+    "metadata": {
+      "intent": "tariff_question",
+      "satisfaction": "neutral",
+      "quality_score": 3,
+      "agent_mistakes": [
+        "unnecessary_escalation"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "8f80245f3ee8"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "contacting agent"
+      },
+      {
+        "role": "agent",
+        "text": "Obviously, Thanks for getting in touch! I grasp that you are looking to contact an agent. Our team of dedicated agents is here to assist you. To connect with a live representative, please stay on the line or hold on for a moment while I transfer your call. Your patience is sincerely appreciated as we ensure that you receive the best possible assistance."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "rude_tone"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "741b54ac4cb8"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I would like to see your damn refund policy, I need help"
+      },
+      {
+        "role": "agent",
+        "text": "Definitely! I completely understand your frustration and urgency in wanting to review our refund policy. I'm here to assist you and provide the information you need.\n\nOur refund policy aims to ensure your satisfaction and address any concerns you may have. It covers various scenarios where you may be eligible for a refund, such as:\n\n1. **Product/Service Defects:** If the product or service you received is defective or doesn't meet the description provided, you have the right to request a refund.\n2. **Cancellation within Grace Period:** Should you decide to cancel your purchase within the specified grace period, you would typically be eligible for a refund.\n3. **Unauthorized Charges:** If you notice any charges on your account that you didn't authorize or recognize, we will investigate the issue and work towards a resolution, which could include a refund if warranted.\n4. **Event Cancellation:** If an event you purchased tickets for is canceled and not rescheduled, you may be entitled to a refund.\n5. **Duplicate Charges:** If you're mistakenly charged multiple times for the same item, we will rectify the error and process a refund.\n6. **Non-receipt of Goods:** In case you haven't received the product within the estimated delivery timeframe, you may qualify for a refund.\n\nPlease note that specific vendors or service providers may have additional conditions or exceptions to our general policy. We recommend reviewing the terms and conditions or contacting the appropriate vendor for further details.\n\nIf you have any questions about a specific order or wish to initiate a refund request, kindly provide me with the relevant order details, such as the order number or any related information, and I'll be more than happy to assist you further.\n\nRemember, we're dedicated to resolving your concerns and ensuring your satisfaction. Just let me know how else I can help you!\""
+      }
+    ],
+    "metadata": {
+      "intent": "refund_request",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "f1bac03cec0d"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "how to locate bill #00108?"
+      },
+      {
+        "role": "agent",
+        "text": "I'll do my best! I understand your need to locate the details of bill number #{{Invoice Number}}. Let me guide you through the process. To find the bill, please follow these steps:\n\n1. Log in to your account on our website.\n2. Navigate to the \"Billing\" or \"Invoices\" section.\n3. Look for a search bar or filter option where you can enter the invoice number.\n4. Enter the invoice number {{Invoice Number}} in the search bar and click on \"Search\" or \"Submit.\"\n\nIf the search yields any results, you should be able to view the invoice details, including the amount, due date, and any other relevant information. In case you encounter any difficulties or need further assistance, don't hesitate to reach out to our customer support team. They will be more than happy to assist you."
+      }
+    ],
+    "metadata": {
+      "intent": "payment_issue",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "41c3715b6b98"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I do not know how to see the accepted payment methods"
+      },
+      {
+        "role": "agent",
+        "text": "Oh, no worries at all! I'm here to help you with that. To see the accepted payment methods, you can simply follow these steps:\n\n1. Visit our website and navigate to the checkout page.\n2. Look for the \"Payment Methods\" section or tab.\n3. Click on it to view the list of accepted payment methods.\n\nIf you encounter any difficulties or have further questions while trying to access the payment methods, please don't hesitate to let me know. I'll be more than happy to guide you through the process step by step. Your satisfaction is our priority, and we want to ensure that you have a seamless experience."
+      }
+    ],
+    "metadata": {
+      "intent": "payment_issue",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "2eea4dc40ead"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I have to enter my secondary delivery address, I need help"
+      },
+      {
+        "role": "agent",
+        "text": "I've realized you need assistance with entering your secondary delivery address. Let's ensure a smooth process together. Here's a step-by-step guide for you:\n\n1. Begin by logging in to your account.\n2. Look for the \"My Account\" or \"Profile\" section. It may be located in the top-right corner of the page.\n3. Within the account settings, find the \"Shipping Addresses\" or similar option.\n4. Choose the option to \"Add a New Address\" or \"Edit Shipping Addresses\".\n5. Fill in the required fields with the details of your secondary delivery address, such as street address, city, state, and postal code.\n6. Double-check all the entered information to ensure accuracy.\n7. Save the changes and your secondary delivery address should be successfully added.\n\nIf you encounter any issues or have further questions, don't hesitate to let me know. I'm here to help!"
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "unsatisfied",
+      "quality_score": 3,
+      "agent_mistakes": [
+        "incorrect_info"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "4e5c0d8cd2a4"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I do not knowwhat to do to give a quick look at bill #12588"
+      },
+      {
+        "role": "agent",
+        "text": "Appreciate your message to us for assistance with quickly checking the bill with the number #{{Invoice Number}}. I understand that you're looking for a prompt solution. To give you a quick look at your bill {{Invoice Number}}, you can navigate to your account dashboard or billing section on our website. Alternatively, you can try searching for \"bill {{Invoice Number}}\" in the search bar on our website. If you require any further assistance or have any specific questions regarding your bill, feel free to ask. I'm here to help!"
+      }
+    ],
+    "metadata": {
+      "intent": "payment_issue",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "fafb54d5fd20"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "assistance to reset my password"
+      },
+      {
+        "role": "agent",
+        "text": "Look, Sure! I understand that you need assistance with resetting your password. Don't worry, I'm here to help guide you through the process. \n\nTo start, please go to the \"{{Password Reset Page}}\" on our platform. You'll find it easy to use and navigate. Once you're there, follow the prompts or instructions to begin the password reset journey. You may need to provide some information like your email address or username to verify your identity. \n\nAfter successfully verifying your identity, you'll be able to create a new, secure password for your account. I recommend choosing a unique password that includes a combination of letters, numbers, and special characters to enhance your account's security. \n\nIf you encounter any issues or have any questions along the way, please don't hesitate to reach out for further support. We're here for you 24/7 and ready to assist at any time."
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "unsatisfied",
+      "quality_score": 3,
+      "agent_mistakes": [
+        "rude_tone"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "2377548be04f"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "where can I report issues with goddamn sign-up?"
+      },
+      {
+        "role": "agent",
+        "text": "Obviously, We appreciate you reaching out to us to report issues you encountered during the sign-up process. Your feedback is crucial in helping us identify and resolve any problems, ensuring a smoother experience for all our users. To address the sign-up issues you are facing, please send an email to our dedicated support team at support@example.com. They will assist you further and ensure that your concerns are promptly addressed. Thank you for your patience and cooperation."
+      }
+    ],
+    "metadata": {
+      "intent": "technical_error",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "incorrect_info",
+        "no_resolution"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "5d53cdc28d2c"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "i need help to report problems with registrations"
+      },
+      {
+        "role": "agent",
+        "text": "Grateful you reached out to us for assistance in reporting the problems you're facing with registrations. We understand how frustrating it can be when you encounter issues during the registration process. Your feedback is valuable to us in identifying and resolving any problems to ensure a smooth experience for all users. To better assist you, could you please provide more details about the specific problems you're encountering? This will allow us to address your concerns promptly and help improve our registration system. We appreciate your patience and cooperation."
+      }
+    ],
+    "metadata": {
+      "intent": "technical_error",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "f0dab1b2e40b"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "wanna get reimbursements"
+      },
+      {
+        "role": "agent",
+        "text": "As I said, I gather that you're looking for assistance in getting reimbursements, and I'm here to help you with that. Receiving a reimbursement can be a frustrating process, but I assure you that I will do my best to guide you through it. To begin, could you please provide me with some more details about the purchase or transaction for which you are seeking reimbursement? This information will help me understand the situation better and provide you with appropriate guidance and solutions."
+      }
+    ],
+    "metadata": {
+      "intent": "refund_request",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "rude_tone"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "843fff401d9e"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "help obtaining a reimbursement of money"
+      },
+      {
+        "role": "agent",
+        "text": "I've been informed that you're seeking assistance in obtaining a reimbursement of money. I'm here to guide you through the process and ensure that you have a seamless experience. To begin, could you please provide me with some more information about the specific circumstances surrounding your reimbursement request? Knowing the details will enable me to provide you with the most accurate and effective guidance. Rest assured, I'm committed to helping you navigate this situation and work towards a satisfactory resolution."
+      }
+    ],
+    "metadata": {
+      "intent": "refund_request",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "incorrect_info"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "533d4c7705b2"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "need help resetting the password of my user account"
+      },
+      {
+        "role": "agent",
+        "text": "Certainly! I completely understand the importance of resetting the password for your user account. Let's go through the process together and get you back on track:\n\n1. Start by visiting our \"{{Login Page URL}}\".\n2. Look for the option that says \"{{Forgot Password}}\" and click on it.\n3. You will be prompted to provide the email address associated with your account. Please enter it accurately.\n4. In a short while, you will receive a detailed email with instructions on how to reset your password. If you don't see it in your main inbox, don't forget to check your spam or junk folder.\n5. Follow the instructions in the email carefully to create a new, secure password for your user account.\n\nShould you encounter any issues along the way or if you need further guidance, feel free to reach out to me. I'm here to support you and ensure a smooth password reset process!\""
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "5e6800f2c9c2"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I want assistance to see what shipping options are available"
+      },
+      {
+        "role": "agent",
+        "text": "Absolutely! I'd be delighted to assist you in exploring the shipping options available. Let me provide you with an overview of our convenient choices:\n\n1. Standard Shipping: With an estimated delivery time of {{Date Range}} business days, this option is perfect for non-urgent items.\n2. Expedited Shipping: If you're looking for a quicker delivery, this option typically takes {{Date Range}} business days.\n3. Overnight Shipping: For those urgent needs, we offer next business day delivery to ensure your items arrive promptly.\n4. In-Store Pickup: If you prefer a more hands-on approach, you can choose to pick up your items at one of our {{Store Location}}, allowing for even greater convenience.\n\nPlease note that specific delivery times may vary based on factors like location and product availability. If you have any additional questions or if there's anything else I can assist you with, please don't hesitate to ask. I'm here to ensure your satisfaction!"
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "c8b76cb5af9d"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "help me to solve problems with online payment"
+      },
+      {
+        "role": "agent",
+        "text": "I've been informed that you're facing some problems with your online payment, and I'm here to assist you in resolving them. To better assist you, could you please provide some additional details about the specific issues you're encountering? This will help us pinpoint the problem and provide you with the most accurate solution. Rest assured, we'll work together to ensure a smooth and hassle-free payment experience. Thank you for reaching out to us with your concerns."
+      }
+    ],
+    "metadata": {
+      "intent": "payment_issue",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "0f1cf08d3d14"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I am trying to change user"
+      },
+      {
+        "role": "agent",
+        "text": "Thank you for contacting us. Is there anything else I can help you with?"
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "unsatisfied",
+      "quality_score": 1,
+      "agent_mistakes": [
+        "incorrect_info"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "9e24c3c74db0"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "where do i notify of issuse with signup"
+      },
+      {
+        "role": "agent",
+        "text": "Thank you for contacting us. Is there anything else I can help you with?"
+      }
+    ],
+    "metadata": {
+      "intent": "technical_error",
+      "satisfaction": "unsatisfied",
+      "quality_score": 3,
+      "agent_mistakes": [
+        "ignored_question"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "87cdb5d7a001"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "have a question about my {{Account Category}} account cancellation"
+      },
+      {
+        "role": "agent",
+        "text": "I'm glad you contacted us to us regarding the cancellation of your {{Account Category}} account. I'm here to assist you and provide the necessary information. Please let me know what specific question you have about the cancellation process. Your satisfaction is important to us, and we want to ensure that all your concerns are addressed."
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "491235c8e6fe"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I have got to receive the corporate newsletter"
+      },
+      {
+        "role": "agent",
+        "text": "I understand your concern. Please try again later or contact us through another channel."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "no_resolution"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "b49eba6d962e"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "help me to check ur available payment methods"
+      },
+      {
+        "role": "agent",
+        "text": "Thank you for reaching out! I'm here to assist you in checking our available payment methods. At our company, we offer a diverse range of options to accommodate our customers' preferences. Here are some of the payment methods we accept:\n\n- Credit/Debit Card: You can use major credit or debit cards like Visa, Mastercard, and American Express for a seamless checkout experience.\n- PayPal: A widely recognized and secure online payment platform that allows you to make purchases with ease.\n- Bank Transfer: You can directly transfer funds from your bank account to complete your payments.\n- Apple Pay: If you're an Apple user, you can make quick and secure payments using Apple Pay.\n- Google Pay: Google Pay offers a convenient and speedy payment process for both Android and iOS users.\n\nThese are just a few examples of our available payment methods. If you have any specific questions or need further assistance, please feel free to let me know. I'm here to help!"
+      }
+    ],
+    "metadata": {
+      "intent": "payment_issue",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "7f2a73dcc571"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "where do i lodge a reclamation against ur business"
+      },
+      {
+        "role": "agent",
+        "text": "I truly regret if you've encountered an issue that requires you to lodge a reclamation against our business. To ensure that your concern is addressed appropriately, I recommend reaching out to our dedicated customer support team. They are well-equipped to assist you and can be contacted through our customer service hotline or via our website's live chat feature. By connecting with our team, we can gather all the necessary details and take the necessary steps to resolve your complaint."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "6353087ca5a0"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "can i talk to an agent"
+      },
+      {
+        "role": "agent",
+        "text": "Thank you for reaching out! I acknowledge your request to talk to an agent. Rest assured, I will help you connect with the right person who can assist you further. Please bear with me for a moment while I transfer you to one of our dedicated human representatives. They will provide you with the personalized support you need."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "2459edf66203"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "order {{Order Number}} current status"
+      },
+      {
+        "role": "agent",
+        "text": "I'll need to transfer you to another department for this. Please hold."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "neutral",
+      "quality_score": 3,
+      "agent_mistakes": [
+        "unnecessary_escalation"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "d7a197aeb12f"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I need to see how soon can I expect my shipment, help me"
+      },
+      {
+        "role": "agent",
+        "text": "We understand your eagerness to anticipate the arrival of your shipment. To provide you with specific information about the estimated delivery time, could you please provide us with the {{Tracking Number}} or {{Order Number}}? With those details, we can track your shipment and give you a more accurate estimate of when you can expect it. Your patience is greatly appreciated!"
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "6eaa8db2a7ea"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I expect a reimbursement of {{Refund Amount}} dollars"
+      },
+      {
+        "role": "agent",
+        "text": "I'm on the same page, the importance of the reimbursement you are expecting, which amounts to {{Currency Symbol}}{{Refund Amount}}. We value your contribution and want to ensure that you receive the compensation you deserve as quickly as possible. Let me check the status of your reimbursement for you. While I look into this, may I ask if you have any specific concerns or additional information regarding your reimbursement? Your insights are valuable to us, and we are committed to resolving any issues you may have. Thank you for your patience and cooperation."
+      }
+    ],
+    "metadata": {
+      "intent": "refund_request",
+      "satisfaction": "unsatisfied",
+      "quality_score": 3,
+      "agent_mistakes": [
+        "incorrect_info"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "6f1ecba24639"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I need help taking a quick look at my bill #37777"
+      },
+      {
+        "role": "agent",
+        "text": "No worries! I completely understand your need for assistance in quickly checking your bill with the number #{{Invoice Number}}. Let's dive right in and find the information you're looking for. Could you please provide me with some additional details such as the billing period or any specific sections of the bill you would like me to focus on? With these details, I'll be able to guide you more effectively. Feel free to let me know if you have encountered any challenges during your search. Your satisfaction is my top priority, and I'm here to help you every step of the way."
+      }
+    ],
+    "metadata": {
+      "intent": "payment_issue",
+      "satisfaction": "unsatisfied",
+      "quality_score": 1,
+      "agent_mistakes": [
+        "unnecessary_escalation",
+        "rude_tone"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "3dce25e32712"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "wanna contact damn customer service i need help"
+      },
+      {
+        "role": "agent",
+        "text": "Look, Honored to assist! I'm clued in that you need assistance and would like to contact our customer service team. We are here to help you resolve any issues you may be facing. Our customer service is available during {{Customer Support Hours}}. You can reach us at {{Customer Support Phone Number}} or through the Live Chat on our website at {{Website URL}}. Please don't hesitate to ask any questions or share any concerns you may have. We're ready to assist you!"
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "neutral",
+      "quality_score": 3,
+      "agent_mistakes": [
+        "rude_tone"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "c618a824d12d"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "how to see bill #85632?"
+      },
+      {
+        "role": "agent",
+        "text": "I understand your concern. Please try again later or contact us through another channel."
+      }
+    ],
+    "metadata": {
+      "intent": "payment_issue",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "unnecessary_escalation"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "8e9aa50f37ad"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "need to report an issue with paymentr"
+      },
+      {
+        "role": "agent",
+        "text": "Happy to get your message to report an issue with your payment. We greatly appreciate your proactive approach in notifying us about this matter. To provide you with the best support, could you please share more details about the payment issue you have encountered? This will enable us to analyze the situation thoroughly and offer suitable solutions. We value your feedback and are here to assist you every step of the way."
+      }
+    ],
+    "metadata": {
+      "intent": "payment_issue",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "646dedc4b431"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "edit info on freemium account"
+      },
+      {
+        "role": "agent",
+        "text": "Obviously, How commendable it is to witness your commitment to editing the information on your freemium account!I'm thrilled to support you in this process and ensure that your account details are accurate and reflective of your needs. Let's work together to make the changes smoothly and provide you with the best possible experience. Can you please specify which specific information you would like to edit on your freemium account? I'm here to guide you every step of the way."
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "ignored_question"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "9d53d01a53c3"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "help me seeing my invoice #37777"
+      },
+      {
+        "role": "agent",
+        "text": "Glad you contacted to us for assistance in accessing your invoice with the number #{{Invoice Number}}. I understand that having quick and convenient access to your invoice is important to you. To help you with this, could you please provide me with some additional information such as your account details or the date range for the invoice? This will enable me to locate and retrieve the invoice for you promptly. Rest assured, I'm here to assist you every step of the way to ensure you have a seamless experience."
+      }
+    ],
+    "metadata": {
+      "intent": "payment_issue",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "4ad082b33a78"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "order 732201349959current status"
+      },
+      {
+        "role": "agent",
+        "text": "Thank you for reaching out! I'm here to assist you in checking the current status of your order with the number {{Order Number}}. To provide you with accurate information, could you please provide me with your email address or phone number associated with the order? This will help me quickly locate your order and give you the most up-to-date status."
+      },
+      {
+        "role": "client",
+        "text": "Alright then"
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "unsatisfied",
+      "quality_score": 3,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": true
+    },
+    "id": "cb9bb69c49b6"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I do not know how I can obtain a rebate of money"
+      },
+      {
+        "role": "agent",
+        "text": "I've become conscious that you're unsure of the process to obtain a rebate for the money you spent. I'm here to assist you with that. To initiate the rebate request, you can follow these steps:\n\n1. Locate your original purchase receipt or invoice. This usually contains important information required for the rebate process.\n\n2. Visit our website or contact our customer support team to inquire about the specific rebate policy related to your purchase. They will provide you with detailed instructions and any necessary forms or documentation.\n\n3. Carefully review the rebate requirements and ensure that you meet all the eligibility criteria before proceeding.\n\n4. Complete the rebate form accurately and provide any supporting documentation, such as proof of purchase, as required.\n\n5. Submit the completed form and documentation by the specified deadline. You may need to send it through mail or submit it electronically, depending on the instructions provided.\n\n6. After submitting your request, allow some time for processing. You can reach out to our customer support team to inquire about the estimated processing time if it's not mentioned in the rebate policy.\n\nRemember, every step of the way, our customer support team is available to provide guidance and address any concerns you may have throughout the rebate process. We strive to make this experience as smooth as possible for you."
+      }
+    ],
+    "metadata": {
+      "intent": "refund_request",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "3c19452232ed"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I want assistance to check the goddamn payment methods"
+      },
+      {
+        "role": "agent",
+        "text": "Thank you for reaching out! I'm here to assist you in checking our available payment methods. We want to provide you with the convenience and ease you deserve when making payments with us. Here are the payment methods we offer:\n\n- **Credit/Debit Card:** We accept major credit and debit cards like Visa, Mastercard, and American Express.\n- **PayPal:** A widely-used online payment platform that ensures secure transactions.\n- **Bank Transfer:** You can make direct payments through a bank transfer from your account.\n- **Apple Pay:** A convenient payment method for Apple users.\n- **Google Wallet:** Offering a fast and easy way to complete your purchases.\n\nIf you have any questions, need further assistance, or if there's anything specific you'd like to know about these payment options, please don't hesitate to ask. Your satisfaction is our top priority!"
+      },
+      {
+        "role": "client",
+        "text": "Thanks for your response"
+      }
+    ],
+    "metadata": {
+      "intent": "payment_issue",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": true
+    },
+    "id": "6a95df587bbb"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "where to look for my bloody invoicce from {{Person Name}}?"
+      },
+      {
+        "role": "agent",
+        "text": "Look, I comprehend your frustration and urgency in locating your invoice from {{Person Name}}. Let's dive into this together and find the information you need. To start with, I would recommend checking your email inbox for any correspondence with {{Person Name}} or any attachments related to your invoice. You can also try logging into your online account or the company's website, where you might find a section specifically dedicated to invoices. If you still can't find it, reaching out to {{Person Name}} directly via email or phone might provide you with the fastest resolution. Rest assured, I'm here to support you every step of the way to ensure you locate your invoice successfully."
+      }
+    ],
+    "metadata": {
+      "intent": "payment_issue",
+      "satisfaction": "neutral",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "rude_tone"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "dc8732c22f80"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I try to restore the access key of my account"
+      },
+      {
+        "role": "agent",
+        "text": "Unquestionably! I'm here to provide you with the necessary steps to restore the access key of your account. \n\nTo begin, please follow these simple instructions:\n\n1. Visit the \"{{Account Recovery Page URL}}\" on our platform.\n2. Look for the option that says \"{{Restore Access Key}}\" and click on it.\n3. You will be prompted to provide your account information and personal details for verification purposes.\n4. Once the verification is complete, you will receive an email with detailed instructions on how to restore your access key securely.\n\nFeel free to let me know if you encounter any difficulties along the way. I'm here to assist you throughout the entire process!"
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "incorrect_info"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "c0a3e3ea0686"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "how to see what hours I can contact customer service?"
+      },
+      {
+        "role": "agent",
+        "text": "We're here to help! I take note that you're looking for information on how to check the hours you can reach our customer service team. To find this information, you can visit our website or check the contact information provided on your purchase confirmation email. Our customer service team is dedicated to assisting you during {{Customer Support Hours}}. If you have any other questions or concerns, please feel free to let me know."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "unsatisfied",
+      "quality_score": 3,
+      "agent_mistakes": [
+        "incorrect_info"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "795f95543fb6"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "delete {{Account Type}} acvount"
+      },
+      {
+        "role": "agent",
+        "text": "I appreciate you reaching out to us regarding the deletion of your {{Account Type}} account. I understand that you would like assistance with this process. To better assist you, could you please provide me with more details about the specific issues or concerns you are facing while attempting to remove your {{Account Type}} account? This information will help us provide you with accurate and tailored guidance to successfully delete your account."
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "3f98f4c1c896"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "need help using the platinum profile"
+      },
+      {
+        "role": "agent",
+        "text": "Indeed! I'm delighted to assist you in making the most of your {{Account Category}} profile:\n\n1. **Accessing Your Account:** Start by logging in to our platform using your credentials.\n2. **Navigating to Account Settings:** Once you're in, locate the '{{Settings}}' or '{{Profile}}' section, usually available in the top-right corner.\n3. **Upgrade Options:** Within the Account Settings or Profile section, keep an eye out for a tab labeled '{{Upgrade Account}}' or '{{Account Change}}'.\n4. **Selecting the {{Account Category}} Profile:** Choose the '{{Account Category}}' option from the list of available account types.\n5. **Finalizing the Upgrade:** Follow the on-screen prompts to complete the upgrade process.\n\nIf you encounter any difficulties along the way or if you have any additional questions, please don't hesitate to let me know. I'm here to ensure a smooth and enjoyable experience as you unlock the exclusive benefits of your {{Account Category}} profile. Cheers!"
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "25ef6b607a65"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "want assistance reporting a sign-up issue"
+      },
+      {
+        "role": "agent",
+        "text": "Thank you for contacting us. Is there anything else I can help you with?"
+      }
+    ],
+    "metadata": {
+      "intent": "technical_error",
+      "satisfaction": "unsatisfied",
+      "quality_score": 1,
+      "agent_mistakes": [
+        "ignored_question",
+        "unnecessary_escalation"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "d930b09479de"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "help to check purchase {{Order Number}} current status"
+      },
+      {
+        "role": "agent",
+        "text": "I understand your concern. Please try again later or contact us through another channel."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "unsatisfied",
+      "quality_score": 3,
+      "agent_mistakes": [
+        "no_resolution"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "a94f89aa665e"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "want assistance to send my feedback about a product"
+      },
+      {
+        "role": "agent",
+        "text": "Thank you for your willingness to share your feedback about our product. I'm here to provide you with the necessary assistance to make the process as seamless as possible. Could you please let me know which specific product you would like to provide feedback on? This will help me guide you through the appropriate channels for submitting your feedback."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "93228530abb0"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "i d not know what to do to download bill #12588"
+      },
+      {
+        "role": "agent",
+        "text": "No problem at all! I completely understand your confusion regarding the process to download bill #{{Invoice Number}}. Let me guide you through the steps to download your bill. First, log in to your account on our website and navigate to the \"Billing\" section. From there, you should see an option to view and download your bills. If you're having trouble locating it, you can also try searching for \"download bill\" in the search bar. If you still need further assistance, please don't hesitate to let me know. I'm here to help you every step of the way."
+      }
+    ],
+    "metadata": {
+      "intent": "payment_issue",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "dea679b2390e"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I need to download bill #00108, how do I do it?"
+      },
+      {
+        "role": "agent",
+        "text": "I understand your concern. Please try again later or contact us through another channel."
+      }
+    ],
+    "metadata": {
+      "intent": "payment_issue",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "ignored_question"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "cd5aef311b36"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I need assistance to unsubscribe to your newsletter"
+      },
+      {
+        "role": "agent",
+        "text": "I comprehend that you are looking for assistance with unsubscribing from our newsletter. Our goal is to ensure that you have a seamless experience in managing your subscriptions. To unsubscribe from our newsletter, you can simply click on the \"Unsubscribe\" link provided at the bottom of any newsletter email you receive from us. This link will direct you to a page where you can confirm your subscription cancellation. Alternatively, you can also reach out to our customer support team at {{Customer Support Email}} or through the Live Chat feature on our website at {{Website URL}} for further assistance. We are here to help make the process as smooth as possible for you."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "24ca95103f51"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "help me to restore the password of my user account"
+      },
+      {
+        "role": "agent",
+        "text": "I'll need to transfer you to another department for this. Please hold."
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "unsatisfied",
+      "quality_score": 3,
+      "agent_mistakes": [
+        "unnecessary_escalation"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "ac87ab8fa832"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I have to take a  quick look at my invoice from {{Person Name}}"
+      },
+      {
+        "role": "agent",
+        "text": "I understand your need to quickly access and review your invoice from {{Salutation}} {{Client Last Name}}. To assist you with this, could you please provide any additional details such as the {{Date Range}}, {{Invoice Number}}, or any other relevant information related to the invoice? With the information you provide, I will be able to guide you more effectively and ensure a smoother resolution."
+      }
+    ],
+    "metadata": {
+      "intent": "payment_issue",
+      "satisfaction": "unsatisfied",
+      "quality_score": 1,
+      "agent_mistakes": [
+        "ignored_question"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "87fd6d9b939c"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "need assistance trying to modify my delivery address"
+      },
+      {
+        "role": "agent",
+        "text": "Obviously, We understand that you're having trouble modifying your delivery address. Rest assured, we're here to help you with that. To update your delivery address, please follow these steps:\n1. Log in to your account on our website.\n2. Navigate to the \"Account Settings\" or \"Profile\" section.\n3. Look for the option to edit your shipping address.\n4. Click on the edit button and make the necessary changes.\n5. Save your new address.\nIf you encounter any issues during this process, please don't hesitate to reach out to our customer support team who will be happy to assist you further."
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "rude_tone"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "2cb42155fc61"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I try to see purchase {{Order Number}} status"
+      },
+      {
+        "role": "agent",
+        "text": "Grateful for your contact! I get the sense that you are trying to check the status of your purchase with the number {{Order Number}}. To provide you with accurate information, could you please confirm if this purchase is associated with an order or a different type of transaction? This will help me guide you to the right place to check the status."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "88aff23911b5"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I want assistance to set up a shipping address"
+      },
+      {
+        "role": "agent",
+        "text": "Of course! I'm here to provide you with the guidance you need to set up your shipping address. Please follow these steps:\n\n1. Begin by logging in to your account on our website.\n2. Once you're logged in, navigate to the \"My Account\" or \"Profile\" section.\n3. Look for the \"Shipping Addresses\" or similar option.\n4. Click on it to access the page where you can manage your shipping addresses.\n5. You should find an option to \"Add New Address\" or \"Edit Shipping Address\". Select it.\n6. Fill in the required fields with the details of your new shipping address.\n7. Double-check that all the information is accurate and complete.\n8. Finally, save the changes and voila! Your new shipping address is set up.\n\nIf you encounter any issues or need further assistance during this process, don't hesitate to let me know. I'm here to help you every step of the way."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "6911b685de28"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I am waiting for a reimburswment of {{Currency Symbol}}{{Refund Amount}}"
+      },
+      {
+        "role": "agent",
+        "text": "We understand how important it is for you to receive the reimbursement of ${{Refund Amount}}. We apologize for the delay and any inconvenience caused. To provide you with an accurate update on the status of your reimbursement, may I kindly request your name, email address, or any other relevant information regarding your request? This will allow us to look into the matter promptly and ensure that your reimbursement is processed as soon as possible. Your satisfaction is our priority, and we appreciate your patience and cooperation in resolving this matter."
+      }
+    ],
+    "metadata": {
+      "intent": "refund_request",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "a638053de1cf"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "help me see in what situations can I ask for a refund"
+      },
+      {
+        "role": "agent",
+        "text": "Assuredly! I completely understand your desire to know the situations in which you can request a refund. Here's a breakdown of the most common scenarios:\n\n1. **Product/Service Defect:** If the item you purchased has a defect or doesn't meet the description, you're typically eligible for a refund.\n2. **Cancellation within Grace Period:** If you change your mind and decide to cancel within the specified grace period, you should be able to receive a refund.\n3. **Unauthorized Charges:** If you see charges on your account that you didn't authorize, we will investigate and assist you in resolving the issue.\n4. **Event Cancellation:** Purchasing tickets for an event that gets canceled, and if it is not rescheduled, you would usually qualify for a refund.\n5. **Duplicate Charges:** If you notice multiple charges for the same item, please reach out to us so that we can rectify the situation promptly.\n6. **Non-receipt of Goods:** If you haven't received your product within the expected timeframe, you may qualify for a refund.\n\nIt's important to note that refund policies may vary between vendors and service providers. Therefore, it is always advisable to consult directly with them or review their terms and conditions for more detailed information. If you have any specific concerns or need assistance with a particular order, please provide me with the order number or relevant details, and I'll be happy to dive deeper into it for you. Your satisfaction is of utmost importance to us.\n\nIs there anything else I can assist you with today?"
+      }
+    ],
+    "metadata": {
+      "intent": "refund_request",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "af94bede5631"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "could i place an orde from {{Delivery Country}}"
+      },
+      {
+        "role": "agent",
+        "text": "Ah, the allure of global shipping! I'm thrilled to share that yes, you can definitely place an order from {{Delivery Country}}. We offer international shipping to various countries, including {{Delivery Country}}. You can browse our website, add the desired items to your cart, and proceed with the checkout process. During checkout, you'll be prompted to enter your shipping address, where you can enter your address in {{Delivery Country}}. Our system will calculate any applicable shipping fees and provide you with an estimated delivery timeframe. So, go ahead and experience the convenience of shopping with us from the comfort of your home in {{Delivery Country}}! If you have any further questions or need assistance throughout the ordering process, please don't hesitate to ask. Happy shopping!"
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "108732c50197"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "wht I cannot submit my new shipping address valid"
+      },
+      {
+        "role": "agent",
+        "text": "Thank you for contacting us. Is there anything else I can help you with?"
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "neutral",
+      "quality_score": 3,
+      "agent_mistakes": [
+        "ignored_question"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "ddda404a5c0d"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "what do I need to do to see what shipment methods I have?"
+      },
+      {
+        "role": "agent",
+        "text": "Great question! To explore the shipment methods available to you, you can follow these simple steps:\n\n1. Visit our website at {{Website URL}} and navigate to the product page of the item you're interested in purchasing.\n2. On the product page, you should find a section titled \"Shipping Options\" or something similar. Click on it to expand and view the available methods.\n3. A list of shipment methods will be displayed, along with their estimated delivery times and costs, if applicable.\n4. Take your time to review each option and select the one that best suits your needs and preferences.\n\nIf you have any further questions or need assistance during the process of exploring the shipment methods, feel free to reach out to our customer support team. We're here to help you make an informed decision and ensure a smooth shopping experience. Let us know how we can assist you further!"
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "1318ebd8cfcb"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "can you help me to set up a different delivery address?"
+      },
+      {
+        "role": "agent",
+        "text": "I'll need to transfer you to another department for this. Please hold."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "unsatisfied",
+      "quality_score": 1,
+      "agent_mistakes": [
+        "unnecessary_escalation"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "adbc9e76aab9"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I want to see what payment methods are allowed"
+      },
+      {
+        "role": "agent",
+        "text": "Thank you for trusting us! I'm fully aware of you would like to see what payment methods are allowed. I'm here to provide you with the necessary information. At our company, we offer a variety of payment methods to ensure convenience for our customers. These options include:\n\n- Credit/Debit Card: We accept major cards such as Visa, Mastercard, and American Express.\n- PayPal: A secure and widely used online payment method.\n- Bank Transfer: Allows you to make direct payments from your bank account.\n- Apple Pay: A quick and easy payment method for Apple users.\n- Google Wallet: Google's payment system for fast and convenient checkouts.\n\nThese are the primary payment options available to our customers. If you have any questions or need further assistance with any of these methods, please let me know. I'm here to help!"
+      }
+    ],
+    "metadata": {
+      "intent": "payment_issue",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "072bdf8a0883"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "where could I see what hours I can reach customer service?"
+      },
+      {
+        "role": "agent",
+        "text": "Thank you for contacting us. Is there anything else I can help you with?"
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "unsatisfied",
+      "quality_score": 3,
+      "agent_mistakes": [
+        "ignored_question"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "e260e5e72396"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "can ya help me checking what methds for delivery ya offer"
+      },
+      {
+        "role": "agent",
+        "text": "Certainly! I'll be more than happy to assist you in exploring our delivery options. Here are the methods we offer:\n\n1. Standard Shipping: This is our default option, and it typically takes {{Date Range}} business days for delivery. It's perfect for non-urgent items.\n\n2. Expedited Shipping: If you need your items a little faster, our expedited shipping option will get them to you within {{Date Range}} business days.\n\n3. Overnight Shipping: For those urgent needs, we offer overnight shipping, ensuring that you receive your items by the next business day.\n\n4. In-Store Pickup: If you prefer a more hands-on approach, you can select our in-store pickup option. This allows you to collect your items personally from one of our {{Store Location}}.\n\nPlease keep in mind that the exact delivery time may vary based on factors such as your location and item availability. If you have any specific questions or if there's anything else I can assist you with, please feel free to ask. I'm here to ensure that you have a seamless and satisfying delivery experience!"
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "079fccf57f0b"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "where can I get information about opening {{Account Category}} accounts?"
+      },
+      {
+        "role": "agent",
+        "text": "Absolutely! You can find detailed information about opening {{Account Category}} accounts on our website. Simply visit our homepage and navigate to the \"Accounts\" section. There, you will find a dedicated page specifically outlining the features, benefits, and requirements for opening a {{Account Category}} account. Additionally, you can contact our customer support team through the Live Chat feature on our website. They will be happy to provide you with all the information you need and assist you with any questions or concerns you may have regarding opening a {{Account Category}} account."
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "69d49c421853"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I need help trying to hcange the bloody delivery address"
+      },
+      {
+        "role": "agent",
+        "text": "I understand your concern. Please try again later or contact us through another channel."
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "no_resolution"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "69a947122d22"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "i  want help to switch to the standard account"
+      },
+      {
+        "role": "agent",
+        "text": "I understand your concern. Please try again later or contact us through another channel."
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "no_resolution"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "17a3a537510c"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "i have got to notify of ah issue with a registration"
+      },
+      {
+        "role": "agent",
+        "text": "We appreciate you taking the time to notify us about the issue you encountered during the registration process. Your feedback is crucial in helping us improve our services and ensure a smoother experience for all users. To better assist you, could you please provide more details about the specific issue you encountered? This will allow us to investigate and address the problem promptly. Thank you for your cooperation, and we apologize for any inconvenience caused."
+      }
+    ],
+    "metadata": {
+      "intent": "technical_error",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "9685d75d6c82"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I want assistance to notify of a problem with sign-up"
+      },
+      {
+        "role": "agent",
+        "text": "Thank you for seeking our assistance in notifying us about the problem you encountered during the sign-up process. We understand that encountering difficulties while signing up can be frustrating, and we apologize for any inconvenience caused. To better assist you, please provide us with more details about the specific issue you are facing. Your feedback is invaluable, and we are committed to resolving the problem promptly to ensure a smooth and seamless sign-up experience for you and our other users."
+      }
+    ],
+    "metadata": {
+      "intent": "technical_error",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "5999940f7658"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "how can I notify of sign-up issues?"
+      },
+      {
+        "role": "agent",
+        "text": "We appreciate your reaching out to us with concerns about sign-up issues. We understand that encountering problems during the sign-up process can be frustrating. I'm here to help you resolve this matter as quickly and efficiently as possible. To notify us of the sign-up issues you're facing, there are several channels available. You can reach out to our customer support team through our website's live chat feature or by calling our dedicated helpline. Alternatively, you can also send an email to our support team, providing a detailed description of the issue. We prioritize resolving sign-up problems promptly, and your feedback is crucial in helping us improve our services. Let us know which method works best for you, and we'll guide you through the process of reporting the sign-up issues you've encountered."
+      }
+    ],
+    "metadata": {
+      "intent": "technical_error",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "fb54b8259af6"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "could you hlp me shopping some of your article?"
+      },
+      {
+        "role": "agent",
+        "text": "I'll need to transfer you to another department for this. Please hold."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "unsatisfied",
+      "quality_score": 3,
+      "agent_mistakes": [
+        "unnecessary_escalation"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "a6c0f8c9212b"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "find my bill from {{Person Name}}"
+      },
+      {
+        "role": "agent",
+        "text": "I'll make it happen! I understand your need to locate the bill from {{Salutation}} {{Client Last Name}}. Allow me to assist you in finding the information you're looking for. Can you please provide me with any additional details, such as the date range or any specific information related to the bill? This will help me narrow down the search and provide you with accurate and personalized assistance."
+      }
+    ],
+    "metadata": {
+      "intent": "payment_issue",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "9cc70cf8c057"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "the available delivery options"
+      },
+      {
+        "role": "agent",
+        "text": "Unquestionably! Let's dive into the world of delivery options and explore what we have to offer. Here are our carefully curated delivery options tailored to your convenience:\n\n1. Standard Shipping: Typically arrives within {{Date Range}} business days. Perfect for non-urgent items.\n2. Expedited Shipping: If you're in a bit of a rush, this option ensures delivery within {{Date Range}} business days.\n3. Overnight Shipping: For those urgent needs, we guarantee next business day delivery.\n4. In-Store Pickup: If you prefer a more hands-on experience, our {{Store Location}} are at your service.\n\nRemember, factors like location and product availability may impact the exact delivery time. If you have any specific concerns or if there's anything else I can assist you with, please don't hesitate to ask. Your satisfaction is our utmost priority!"
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "0ec9b8421b7f"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "is it possible to order from {{Delivery Country}}?"
+      },
+      {
+        "role": "agent",
+        "text": "I'll do my best! We are pleased to offer our shipping services to {{Delivery Country}} as well. You can confidently place your order with us knowing that we can deliver it right to your doorstep. We strive to make the ordering process seamless and convenient for our valued Canadian customers. If you have any specific requirements or questions regarding shipping to {{Delivery Country}}, please feel free to let me know. I'm here to assist you every step of the way!"
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "incorrect_info"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "eb39e567101a"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "remove item from order {{Order Number}}"
+      },
+      {
+        "role": "agent",
+        "text": "I've realized that you need assistance with removing an item from your order number {{Order Number}}. Our team is here to help! To proceed with the item removal, could you please provide the specific details of the item you wish to remove? This will enable us to make the necessary adjustments to your order and ensure your complete satisfaction. Thank you for reaching out to us, and we appreciate your patience as we work on resolving this for you."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "7e57d1bb45d4"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "my new shipping address is invalid, can you help me?"
+      },
+      {
+        "role": "agent",
+        "text": "I'm aware that you're having trouble with your new shipping address being invalid. I apologize for any inconvenience caused. To address this issue, please follow these steps:\n\n1. Log in to your account.\n2. Navigate to the 'My Account' or 'Profile' section.\n3. Look for the 'Shipping Addresses' or similar section.\n4. Select the option to 'Edit' or 'Update' your shipping address.\n5. Double-check and ensure that you have entered the correct information for your new shipping address.\n6. Review any error messages or notifications that appear, as they might provide more specific details about the issue.\n7. Save the changes and try entering the new shipping address again.\n\nIf you continue to experience difficulties, or if the error persists, please provide me with more specific details about the error message or any additional information, and I'll be happy to assist you further in resolving this matter."
+      },
+      {
+        "role": "client",
+        "text": "Got it, thanks anyway"
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "no_resolution"
+      ],
+      "hidden_dissatisfaction": true
+    },
+    "id": "a27e849485b8"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "update freemium account"
+      },
+      {
+        "role": "agent",
+        "text": "Your determination to update your freemium account is truly admirable!I'm here to assist you every step of the way. To ensure the safety and security of your account, I recommend visiting our {{Online Company Portal Info}} or contacting our dedicated customer support team for personalized assistance. They will guide you through the account update process and answer any questions you may have. What specific details would you like to update on your freemium account? Let's make sure your account reflects your current needs and preferences."
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "182ccc3908b9"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "i cant afford order {{Order Number}}"
+      },
+      {
+        "role": "agent",
+        "text": "Obviously, I gather that canceling your purchase with the order number {{Order Number}} is not affordable for you at the moment. We value your needs and concerns, and we're here to help. I recommend reaching out to our customer support team for further assistance. They can explore possible alternatives or solutions to address your financial situation. You can contact them during {{Customer Support Hours}} at {{Customer Support Phone Number}} or through the Live Chat on our website at {{Website URL}}. We're committed to finding the best possible resolution for you."
+      }
+    ],
+    "metadata": {
+      "intent": "refund_request",
+      "satisfaction": "neutral",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "rude_tone"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "4880bcf7e74f"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "need helpsolving problems with online payment"
+      },
+      {
+        "role": "agent",
+        "text": "I understand your concern. Please try again later or contact us through another channel."
+      }
+    ],
+    "metadata": {
+      "intent": "payment_issue",
+      "satisfaction": "unsatisfied",
+      "quality_score": 1,
+      "agent_mistakes": [
+        "rude_tone",
+        "incorrect_info"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "fa6608b88418"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "what do I have to do to restore my user account pwd?"
+      },
+      {
+        "role": "agent",
+        "text": "As I said, I'll take care of it! I understand your need to restore your user account password. Rest assured, I'm here to guide you through the process. Here are the steps you can follow:\n\n1. Head over to our platform's \"{{Login Page URL}}\"\n2. Look for the option \"{{Forgot Password}}\" and click on it.\n3. On the password recovery page, enter the email address associated with your user account.\n4. You'll receive an email shortly with instructions on how to reset your password. If it doesn't appear in your inbox, please check your spam or junk folders.\n5. Follow the instructions in the email to create a new password for your user account.\n\nIf you encounter any difficulties during this process or have any further questions, please don't hesitate to reach out. I'm here to provide you with the support you need to restore access to your user account."
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "rude_tone"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "db7a8c21a884"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I have got to leave some feedback for your products, help me"
+      },
+      {
+        "role": "agent",
+        "text": "Thank you for trusting with your feedback! Your input is incredibly valuable to us as it enables us to better understand our customers' needs and expectations. I would be more than happy to assist you in leaving feedback for our products. Could you please share with me the specific products you would like to provide feedback on? This will allow me to guide you through the process more effectively and ensure that your feedback is delivered to the appropriate teams."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "neutral",
+      "quality_score": 3,
+      "agent_mistakes": [
+        "incorrect_info"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "4a015dc521cd"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "check my invoice from {{Person Name}}"
+      },
+      {
+        "role": "agent",
+        "text": "I want to ensure that you receive prompt assistance with checking your invoice from {{Salutation}} {{Client Last Name}}. Could you kindly provide me with additional details such as the invoice number or the date range? With this information, I'll be able to guide you more effectively and help you locate the specific invoice you are looking for. Your satisfaction is of utmost importance to us, and I'm here to provide you with all the support you need."
+      }
+    ],
+    "metadata": {
+      "intent": "payment_issue",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "79783fcb50d2"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I would like to talk with customer support, how do I do it?"
+      },
+      {
+        "role": "agent",
+        "text": "Thank you for reaching out! I understand your desire to talk with our customer support team. To contact our customer support, you can reach them during our {{Customer Support Hours}} by calling {{Customer Support Phone Number}} or by using the Live Chat feature on our website at {{Website URL}}. Our dedicated team is here to assist you and address any questions or concerns you may have. Don't hesitate to reach out, and we'll be glad to help you!"
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "ef9d98af39f3"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "help checkig in what situations can i ask for a refund"
+      },
+      {
+        "role": "agent",
+        "text": "I understand your concern. Please try again later or contact us through another channel."
+      }
+    ],
+    "metadata": {
+      "intent": "refund_request",
+      "satisfaction": "unsatisfied",
+      "quality_score": 3,
+      "agent_mistakes": [
+        "no_resolution"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "d1e3907cbdc3"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "i paid {{Currency Symbol}}{{Refund Amount}} for this purchase i try to receive a rebate"
+      },
+      {
+        "role": "agent",
+        "text": "I'll need to transfer you to another department for this. Please hold."
+      }
+    ],
+    "metadata": {
+      "intent": "refund_request",
+      "satisfaction": "unsatisfied",
+      "quality_score": 1,
+      "agent_mistakes": [
+        "unnecessary_escalation"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "bb98c828b8e3"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "i cannot check if there is anything new on the rebate"
+      },
+      {
+        "role": "agent",
+        "text": "I already told you, I gather that you're unable to check for any updates on your rebate. Don't worry, I'm here to help you with that. Could you please provide me with the necessary details like your name, email address, and any reference number associated with your rebate? With this information, I'll be able to assist you in tracking the progress and provide you with the latest updates."
+      }
+    ],
+    "metadata": {
+      "intent": "refund_request",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "rude_tone"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "f71960dee371"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "can you help me editing the damn data on my user?"
+      },
+      {
+        "role": "agent",
+        "text": "How sublime it is to embark on the extraordinary quest of editing the data on your esteemed user account!I'm ecstatic to be your trusted guide throughout this marvelous process. I'm here to provide you with personalized assistance and ensure that your experience is as smooth as can be. Could you please specify the particular data you would like to edit? Together, we shall conquer any obstacle that lies in our path!"
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "unsatisfied",
+      "quality_score": 1,
+      "agent_mistakes": [
+        "no_resolution"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "0199e134eb7c"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "help me edit purchase {{Order Number}}"
+      },
+      {
+        "role": "agent",
+        "text": "Happy to hear from you! I truly understand that you need assistance with editing your purchase with order number {{Order Number}}. Rest assured, we are here to help you make the necessary modifications. Could you please provide more details about the specific changes you would like to make? This will enable us to assist you more effectively and ensure your complete satisfaction."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "76550aad06a0"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "what do I have to do to locate order {{Order Number}}?"
+      },
+      {
+        "role": "agent",
+        "text": "We're here to help! I take note that you are looking for guidance on how to locate your order with the number {{Order Number}}. To easily find the status and location of your order, you can visit our website and go to the \"{{Online Order Interaction}}\" section. There, you will be able to see the current status, estimated delivery date, and tracking information for your order. If you have any issues or need further assistance, feel free to let me know. I'm here to help ensure a smooth and seamless experience for you throughout the process."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "fc9533428b2e"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "where do i cherck at what time i can call customer service"
+      },
+      {
+        "role": "agent",
+        "text": "Appreciate your reaching out! Understanding your need to find out the hours you can connect with our customer service team, you can easily find this information on our website. Simply visit our website at {{Website URL}} and navigate to the 'Contact Us' or 'Customer Support' page. There, you will find the specific operating hours during which you can reach our customer service team. If you have any further questions or concerns, feel free to let me know. I'm here to help!"
+      },
+      {
+        "role": "client",
+        "text": "Okay..."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "no_resolution"
+      ],
+      "hidden_dissatisfaction": true
+    },
+    "id": "608f5659653c"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "can i swap a product of purchase {{Order Number}}"
+      },
+      {
+        "role": "agent",
+        "text": "Appreciate you reaching out to us! We understand that you would like to swap a product from purchase number {{Order Number}}. We are here to assist you with that. To better help you, could you please provide us with the details of the product you would like to swap? This could include the product name, SKU, or any other identifying information. Once we have the necessary details, we will be able to guide you through the swap process and find a suitable replacement. Your satisfaction is our priority, and we appreciate your patience in providing us with the requested information."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "d07bd70731e2"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I need to see your money back policy, can you hep me?"
+      },
+      {
+        "role": "agent",
+        "text": "I'll take care of it! I completely understand your need to review our money back policy. Our money back policy outlines the circumstances in which you may be eligible for a refund. It includes situations such as product/service defects, cancellations within the grace period, unauthorized charges, event cancellations, duplicate charges, and non-receipt of goods. However, please note that each vendor or service provider may have their own specific refund policies, so it's always a good idea to consult directly with them or review their terms and conditions for a comprehensive understanding. If you have any specific questions or concerns related to a particular purchase or order, please provide me with the necessary details, such as the order number, and I'll be happy to assist you further. Your satisfaction is our top priority, and we want to ensure that you have a clear understanding of our money back policy. Let me know how else I can assist you today!"
+      }
+    ],
+    "metadata": {
+      "intent": "refund_request",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "43150f8503c7"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I don't know what I need to do to speak with a human agent"
+      },
+      {
+        "role": "agent",
+        "text": "We appreciate your message! It's clear to me that you're unsure about the steps to speak with a human agent. Let me guide you through the process. To connect with a human agent, you can try the following options:\n\n1. Check the website: Our website might have a dedicated page or section with contact information, such as a \"Contact Us\" or \"Support\" page. You can explore the website and look for these details.\n\n2. Use the live chat: Many websites provide a live chat feature where you can directly communicate with a customer service representative. Look for a chat icon or option on the website and initiate a conversation.\n\n3. Call our customer support: If you prefer talking over the phone, you can reach our customer support team by dialing the provided customer support phone number during the designated support hours.\n\n4. Email us: Sending an email describing your concern or requesting assistance is another way to connect with a human agent. Look for the support or contact email address on our website and compose an email.\n\n5. Social media channels: Some companies offer customer support through social media platforms. You can try reaching out to us through our official social media accounts and send a direct message or post a comment seeking assistance.\n\nRemember, these options might vary depending on the company, so it's always best to explore the website or contact us through the available channels specified for assistance. We're here to help you, so please feel free to reach out if you have any further questions or concerns.\""
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "03268014647a"
+  }
+]

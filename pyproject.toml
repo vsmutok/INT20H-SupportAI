@@ -1,0 +1,82 @@
+[project]
+name = "int20h-supportai"
+version = "0.1.0"
+description = "A tool for generating and augmenting customer support datasets using LLM"
+authors = [
+    { name = "Hural", email = "hural@example.com" },
+]
+dependencies = [
+    "datasets>=4.5.0",
+    "loguru>=0.7.3",
+    "ollama>=0.6.1",
+]
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+keywords = ["nlp", "dataset", "augmentation", "llm", "support", "ollama"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.urls]
+Homepage = "https://github.com/hural/INT20H-SupportAI"
+Repository = "https://github.com/hural/INT20H-SupportAI.git"
+Issues = "https://github.com/hural/INT20H-SupportAI/issues"
+
+[project.scripts]
+int20h-generate = "src.generator.main:main"
+int20h-analyze = "src.analyzer.main:main"
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit>=4.3.0",
+    "ruff>=0.12.2",
+    "mypy>=1.11.0",
+    "pytest>=8.0.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "C90", # mccabe
+    "N",   # pep8-naming
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "SIM", # flake8-simplify
+    "T20", # flake8-print
+]
+ignore = []
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
