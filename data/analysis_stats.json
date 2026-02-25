@@ -1,0 +1,47 @@
+{
+  "total": 300,
+  "by_intent": {
+    "refund_request": 66,
+    "account_access": 61,
+    "payment_issue": 32,
+    "technical_error": 43,
+    "other": 84,
+    "tariff_question": 14
+  },
+  "by_satisfaction": {
+    "unsatisfied": 157,
+    "neutral": 142,
+    "satisfied": 1
+  },
+  "avg_quality_score": 2.02,
+  "quality_score_distribution": {
+    "1": 141,
+    "2": 73,
+    "3": 26,
+    "4": 58,
+    "5": 2
+  },
+  "hidden_dissatisfaction_count": 136,
+  "with_mistakes_count": 188,
+  "mistake_frequency": {
+    "rude_tone": 17,
+    "no_resolution": 156,
+    "incorrect_info": 22,
+    "unnecessary_escalation": 24,
+    "ignored_question": 2
+  },
+  "tone_agent_distribution": {
+    "rude": 28,
+    "professional": 264,
+    "casual": 8
+  },
+  "tone_client_distribution": {
+    "frustrated": 183,
+    "calm": 117
+  },
+  "resolution_distribution": {
+    "unresolved": 205,
+    "partially_resolved": 93,
+    "resolved": 2
+  }
+}

@@ -1,18 +1,32 @@
 {
-  "total": 100,
+  "total": 300,
   "by_satisfaction": {
-    "satisfied": 50,
-    "neutral": 8,
-    "unsatisfied": 42
+    "unsatisfied": 107,
+    "satisfied": 148,
+    "neutral": 45
   },
   "by_intent": {
-    "refund_request": 13,
-    "account_access": 19,
-    "other": 39,
-    "payment_issue": 20,
-    "technical_error": 8,
-    "tariff_question": 1
+    "refund_request": 52,
+    "payment_issue": 52,
+    "technical_error": 48,
+    "account_access": 48,
+    "tariff_question": 48,
+    "other": 52
   },
-  "hidden_dissatisfaction": 5,
-  "with_mistakes": 47
+  "hidden_dissatisfaction": 30,
+  "with_mistakes": 138,
+  "dialog_length_distribution": {
+    "6": 57,
+    "3": 11,
+    "4": 108,
+    "2": 105,
+    "5": 19
+  },
+  "mistake_types": {
+    "rude_tone": 31,
+    "ignored_question": 36,
+    "unnecessary_escalation": 32,
+    "incorrect_info": 29,
+    "no_resolution": 51
+  }
 }
