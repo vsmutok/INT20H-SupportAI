@@ -3,7 +3,7 @@ name = "int20h-supportai"
 version = "0.1.0"
 description = "A tool for generating and augmenting customer support datasets using LLM"
 authors = [
-    { name = "Hural", email = "hural@example.com" },
+    { name = "Vasyl", email = "vasyl.smutok@gmail.com" },
 ]
 dependencies = [
     "datasets>=4.5.0",

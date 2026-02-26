@@ -44,17 +44,21 @@ Generating high-quality, diverse support datasets is hard. SupportAI solves this
 ├── src/
 │   ├── generator/              # Dataset generation logic
 │   │   ├── main.py             # Generator orchestrator (target_count=300)
-│   │   └── engine.py           # Core: augmentation, LLM dialog extension, mistakes
+│   │   ├── engine.py           # Core: augmentation, LLM dialog extension, mistakes
+│   │   └── prompts.py          # LLM prompt templates for generation
 │   ├── analyzer/               # Dataset analysis logic
 │   │   ├── main.py             # Analyzer orchestrator + stats computation
-│   │   └── engine.py           # Core: LLM-based dialog analysis + validation
+│   │   ├── engine.py           # Core: LLM-based dialog analysis + validation
+│   │   └── prompts.py          # LLM prompt templates for analysis
 │   └── config/
 │       ├── __init__.py
-│       └── constants.py        # Intent mappings, mistake types, template replacements
+│       ├── constants.py        # Intent mappings, mistake types, template replacements
+│       └── logger.py           # Loguru-based logging configuration
 ├── generate.py                 # Entry point: dataset generation
 ├── analyze.py                  # Entry point: dataset analysis
-├── pyproject.toml              # Python project configuration
-├── requirements.txt            # Dependencies
+├── pyproject.toml              # Project configuration (dependencies, ruff, mypy)
+├── .pre-commit-config.yaml     # Git pre-commit hooks configuration
+├── requirements.txt            # Static dependencies (exported from pyproject.toml)
 └── README.md
 ```
 
@@ -96,12 +100,44 @@ Data and logs are persisted in `./data` and `./logs` directories on your host.
    ```
 3. **Dependencies**:
    ```bash
-   # Using uv (recommended)
+   # Using uv (highly recommended for speed and reliability)
    uv sync
 
-   # Using pip
+   # Using pip (traditional method)
    pip install -r requirements.txt
    ```
+
+## Development & Tooling
+
+This project uses modern Python tooling to ensure high code quality and fast development cycles.
+
+### [uv](https://github.com/astral-sh/uv)
+We use `uv` as our primary package manager. It is a drop-in replacement for `pip`, `pip-tools`, and `virtualenv`, written in Rust.
+- **Install dependencies**: `uv sync`
+- **Run scripts**: `uv run python generate.py`
+- **Add new package**: `uv add <package_name>`
+
+### [pyproject.toml](pyproject.toml)
+The central configuration file for the project. It follows [PEP 621](https://peps.python.org/pep-0621/) and contains:
+- **Build System**: Managed by `hatchling`.
+- **Linting & Formatting**: Configured for `Ruff`.
+- **Type Checking**: Strict `MyPy` configuration.
+- **Scripts**: Custom commands like `int20h-generate`.
+
+### [pre-commit](.pre-commit-config.yaml)
+To maintain code consistency, we use `pre-commit` hooks. They automatically run linter and formatter before each commit.
+
+**Setup pre-commit hooks:**
+```bash
+# This will install hooks defined in .pre-commit-config.yaml
+uv run pre-commit install
+```
+
+**Run checks manually:**
+```bash
+uv run pre-commit run --all-files
+```
+Current hooks include: `ruff-format`, `ruff` (with auto-fix), `check-yaml`, `check-json`, and other safety checks.
 
 ## Usage
 
@@ -174,9 +210,10 @@ Each analyzed entry contains:
 ```
 
 ## Documentation
+- [Project Structure](docs/PROJECT_STRUCTURE.md) — complete project file map (Ukrainian)
 - [Generation Process](docs/GENERATION_PROCESS.md) — detailed description of dataset generation steps
 - [Analysis Process](docs/ANALYSIS_PROCESS.md) — detailed description of dataset analysis steps
--
+
 ## Configuration
 
 - **Model**: Change `ollama_model` in `src/generator/main.py` or `src/analyzer/main.py`

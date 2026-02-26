@@ -65,13 +65,14 @@
 
 ## Файли
 
-| Файл | Що робить |
+| Файл | Опис |
 |------|-----------|
-| `generate.py` | Точка входу |
-| `src/generator/main.py` | Оркеструє 5 кроків генерації, зберігає результат і рахує статистику |
-| `src/generator/engine.py` | `DatasetAugmenter` — основний клас: LLM-запити, варіації, розширення, створення проблемних версій |
-| `src/generator/prompts.py` | Шаблони промптів для LLM (аналіз, варіації, розширення, проблемні відповіді) |
-| `src/config/constants.py` | `SEED`, `INTENT_MAP`, `AGENT_MISTAKES`, `TEMPLATE_REPLACEMENTS`, `HIDDEN_DISSATISFACTION_CLOSINGS` |
+| `generate.py` | Точка входу: запуск процесу генерації. |
+| `src/generator/main.py` | Оркестрація: завантаження → аналіз → варіації → розширення → збереження. |
+| `src/generator/engine.py` | `DatasetAugmenter`: робота з базою, LLM-запити, створення проблемних сценаріїв. |
+| `src/generator/prompts.py` | Шаблони промптів для генерації, варіацій та доповнення діалогів. |
+| `src/config/constants.py` | Константи: `SEED`, `INTENT_MAP`, `AGENT_MISTAKES`, `TEMPLATE_REPLACEMENTS`. |
+| `src/config/logger.py` | Налаштування логування для відстеження кроків генерації. |
 
 ## Конфігурація
 
