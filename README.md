@@ -2,6 +2,12 @@
 
 A comprehensive tool for generating and analyzing customer support dialogue datasets using Large Language Models (LLM) and combinatorial augmentation. This project evaluates support quality, identifies agent mistakes, and models complex customer interactions including hidden dissatisfaction.
 
+## Why SupportAI?
+
+Generating high-quality, diverse support datasets is hard. SupportAI solves this by:
+- **Augmenting Real Data**: Instead of generating purely synthetic data, we start with the Bitext dataset and enrich it with LLM-generated nuances.
+- **Modeling Real Support Issues**: We explicitly generate scenarios with agent mistakes and hidden customer dissatisfaction to test how well your evaluation systems perform.
+- **Double-Loop Validation**: We use one LLM configuration to generate data and another (independent) pass to analyze it, allowing for accuracy benchmarking.
 ## Key Features
 
 ### Generator (`generate.py`)
@@ -52,7 +58,36 @@ A comprehensive tool for generating and analyzing customer support dialogue data
 └── README.md
 ```
 
-## Installation
+## Docker Support
+
+The easiest way to run the project with all its dependencies is using Docker Compose.
+
+### Quick Start with Docker
+1. **Prerequisites**: Ensure you have Docker and Docker Compose installed.
+2. **Launch**:
+   ```bash
+   docker-compose up -d
+   ```
+   This will start:
+   - `ollama`: The LLM engine.
+   - `ollama-pull-model`: A helper service that automatically pulls `llama3.1:8b`.
+
+3. **Run Generation**:
+   Once the model is pulled (check `ollama` logs or wait a minute), run:
+   ```bash
+   docker-compose run app python generate.py
+   ```
+
+4. **Run Analysis**:
+   ```bash
+   docker-compose run app python analyze.py
+   ```
+
+Data and logs are persisted in `./data` and `./logs` directories on your host.
+
+---
+
+## Installation (Local)
 
 1. **Python**: Version 3.12 or higher.
 2. **Ollama**: Install and run Ollama locally with the `llama3.1:8b` model:
@@ -138,6 +173,10 @@ Each analyzed entry contains:
 }
 ```
 
+## Documentation
+- [Generation Process](docs/GENERATION_PROCESS.md) — detailed description of dataset generation steps
+- [Analysis Process](docs/ANALYSIS_PROCESS.md) — detailed description of dataset analysis steps
+-
 ## Configuration
 
 - **Model**: Change `ollama_model` in `src/generator/main.py` or `src/analyzer/main.py`
