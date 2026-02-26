@@ -1,26 +1,30 @@
 import json
 import random
-from collections import Counter
-from loguru import logger
-from src.generator.engine import DatasetAugmenter
+
 from src.config.constants import SEED
+from src.config.logger import logger
+from src.generator.engine import DatasetAugmenter
 
 
 def main():
     random.seed(SEED)
+    logger.info("=" * 60)
     logger.info("Starting dataset generation process...")
+    logger.info("=" * 60)
     augmenter = DatasetAugmenter(ollama_model="llama3.1:8b")
 
     # Step 1: Load base dataset
+    logger.info("Step 1/5: Loading base dataset from HuggingFace...")
     base_dialogs = augmenter.load_base_dataset()
 
     # Step 2: Analyze subset with LLM
-    logger.info("Analyzing dialogs with LLM...")
-    sample_size = min(2000, len(base_dialogs))
+    sample_size = min(100, len(base_dialogs))
+    logger.info(f"Step 2/5: Analyzing {sample_size} sample dialogs with LLM (out of {len(base_dialogs)} total)...")
     analyzed_sample = augmenter.analyze_dialog_batch(base_dialogs[:sample_size], batch_size=10)
 
     # Use analysis patterns for the rest
-    logger.info("Applying patterns to the rest of the dataset...")
+    remaining = len(base_dialogs) - sample_size
+    logger.info(f"Step 3/5: Applying statistical patterns to remaining {remaining} dialogs...")
     for dialog in base_dialogs[sample_size:]:
         dialog["metadata"] = {
             "intent": dialog["base_intent"],
@@ -30,12 +34,16 @@ def main():
             "hidden_dissatisfaction": False,
         }
         analyzed_sample.append(dialog)
+    logger.success(f"Patterns applied. Total dialogs with metadata: {len(analyzed_sample)}")
 
-    # Step 3: Generate variations
+    # Step 4: Generate variations
+    logger.info("Step 4/5: Generating phrase variations for augmentation...")
     augmenter.augment_with_variations(analyzed_sample)
 
-    # Step 4: Expand to target size with max diversity
-    expanded_dataset = augmenter.expand_dataset(analyzed_sample, target_count=300)
+    # Step 5: Expand to target size with max diversity
+    target_count = 50_000
+    logger.info(f"Step 5/5: Expanding dataset to {target_count} dialogs...")
+    expanded_dataset = augmenter.expand_dataset(analyzed_sample, target_count=target_count)
 
     # Clean up internal fields
     for dialog in expanded_dataset:
@@ -43,11 +51,14 @@ def main():
         dialog.pop("original_intent", None)
 
     # Save
-    logger.info(f"Saving {len(expanded_dataset)} dialogs to data/dataset.json...")
-    with open("data/dataset.json", "w", encoding="utf-8") as f:
+    output_path = "data/dataset.json"
+    logger.info(f"Saving {len(expanded_dataset)} dialogs to {output_path}...")
+    with open(output_path, "w", encoding="utf-8") as f:
         json.dump(expanded_dataset, f, ensure_ascii=False, indent=2)
+    logger.success(f"Dataset saved to {output_path}")
 
     # Stats calculation
+    logger.info("Computing dataset statistics...")
     stats = {
         "total": len(expanded_dataset),
         "by_satisfaction": {},
@@ -76,22 +87,24 @@ def main():
                 stats["mistake_types"][m] = stats["mistake_types"].get(m, 0) + 1
 
         dialog_len = str(len(d.get("dialog", [])))
-        stats["dialog_length_distribution"][dialog_len] = (
-            stats["dialog_length_distribution"].get(dialog_len, 0) + 1
-        )
+        stats["dialog_length_distribution"][dialog_len] = stats["dialog_length_distribution"].get(dialog_len, 0) + 1
 
-    logger.success("Dataset generated successfully!")
-    logger.info(f"Total dialogs: {stats['total']}")
-    logger.info(f"By satisfaction: {stats['by_satisfaction']}")
-    logger.info(f"By intent: {stats['by_intent']}")
-    logger.info(f"Hidden dissatisfaction: {stats['hidden_dissatisfaction']}")
-    logger.info(f"With agent mistakes: {stats['with_mistakes']}")
-    logger.info(f"Mistake types: {stats['mistake_types']}")
-    logger.info(f"Dialog lengths: {stats['dialog_length_distribution']}")
+    logger.info("-" * 60)
+    logger.success("Dataset generation complete!")
+    logger.info("-" * 60)
+    logger.info(f"  Total dialogs:           {stats['total']}")
+    logger.info(f"  By satisfaction:         {stats['by_satisfaction']}")
+    logger.info(f"  By intent:               {stats['by_intent']}")
+    logger.info(f"  Hidden dissatisfaction:  {stats['hidden_dissatisfaction']}")
+    logger.info(f"  With agent mistakes:     {stats['with_mistakes']}")
+    logger.info(f"  Mistake types:           {stats['mistake_types']}")
+    logger.info(f"  Dialog lengths:          {stats['dialog_length_distribution']}")
+    logger.info("-" * 60)
 
     with open("data/dataset_stats.json", "w") as f:
         json.dump(stats, f, indent=2)
     logger.info("Stats saved to data/dataset_stats.json")
+
 
 if __name__ == "__main__":
     main()

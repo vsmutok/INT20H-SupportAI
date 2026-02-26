@@ -1,12 +1,14 @@
 import json
 from pathlib import Path
-from loguru import logger
 
 from src.analyzer.engine import DatasetAnalyzer
+from src.config.logger import logger
 
 
 def main():
+    logger.info("=" * 60)
     logger.info("Starting dataset analysis process...")
+    logger.info("=" * 60)
 
     # Load dataset
     dataset_path = Path("data/dataset.json")
@@ -17,17 +19,19 @@ def main():
     with open(dataset_path, encoding="utf-8") as f:
         dataset = json.load(f)
 
-    logger.info(f"Loaded {len(dataset)} dialogs from {dataset_path}")
+    logger.info(f"Step 1/3: Loaded {len(dataset)} dialogs from {dataset_path}")
 
     # Initialize analyzer
     analyzer = DatasetAnalyzer(ollama_model="llama3.1:8b")
 
     # Analyze all dialogs
+    logger.info(f"Step 2/3: Analyzing {len(dataset)} dialogs with LLM (batch_size=5)...")
     analysis_results = analyzer.analyze_batch(dataset, batch_size=5)
 
     # Build output: each dialog with its independent analysis
+    logger.info("Building analysis output...")
     output = []
-    for dialog_data, analysis in zip(dataset, analysis_results):
+    for dialog_data, analysis in zip(dataset, analysis_results, strict=False):
         entry = {
             "id": dialog_data.get("id", "unknown"),
             "dialog": dialog_data["dialog"],
@@ -40,28 +44,34 @@ def main():
 
     # Save analysis results
     output_path = Path("data/analysis.json")
+    logger.info(f"Step 3/3: Saving results to {output_path}...")
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
-    logger.info(f"Analysis saved to {output_path}")
+    logger.success(f"Analysis saved to {output_path}")
 
     # Compute and save aggregate statistics
+    logger.info("Computing aggregate statistics...")
     stats = _compute_stats(output)
     stats_path = Path("data/analysis_stats.json")
     with open(stats_path, "w", encoding="utf-8") as f:
         json.dump(stats, f, ensure_ascii=False, indent=2)
+    logger.info(f"Stats saved to {stats_path}")
 
     # Log summary
+    logger.info("-" * 60)
     logger.success("Analysis complete!")
-    logger.info(f"Total dialogs analyzed: {stats['total']}")
-    logger.info(f"By intent: {stats['by_intent']}")
-    logger.info(f"By satisfaction: {stats['by_satisfaction']}")
-    logger.info(f"Average quality score: {stats['avg_quality_score']:.2f}")
-    logger.info(f"Hidden dissatisfaction detected: {stats['hidden_dissatisfaction_count']}")
-    logger.info(f"Dialogs with agent mistakes: {stats['with_mistakes_count']}")
-    logger.info(f"Most common mistakes: {stats['mistake_frequency']}")
-    logger.info(f"Agent tone: {stats['tone_agent_distribution']}")
-    logger.info(f"Client tone: {stats['tone_client_distribution']}")
-    logger.info(f"Resolution: {stats['resolution_distribution']}")
+    logger.info("-" * 60)
+    logger.info(f"  Total dialogs analyzed:      {stats['total']}")
+    logger.info(f"  By intent:                   {stats['by_intent']}")
+    logger.info(f"  By satisfaction:              {stats['by_satisfaction']}")
+    logger.info(f"  Average quality score:        {stats['avg_quality_score']:.2f}")
+    logger.info(f"  Hidden dissatisfaction found: {stats['hidden_dissatisfaction_count']}")
+    logger.info(f"  Dialogs with agent mistakes:  {stats['with_mistakes_count']}")
+    logger.info(f"  Most common mistakes:         {stats['mistake_frequency']}")
+    logger.info(f"  Agent tone distribution:      {stats['tone_agent_distribution']}")
+    logger.info(f"  Client tone distribution:     {stats['tone_client_distribution']}")
+    logger.info(f"  Resolution distribution:      {stats['resolution_distribution']}")
+    logger.info("-" * 60)
 
     # Compare analysis vs generator metadata (if present)
     if dataset and dataset[0].get("metadata"):
@@ -96,9 +106,7 @@ def _compute_stats(output: list[dict]) -> dict:
 
         score = a.get("quality_score", 3)
         total_score += score
-        stats["quality_score_distribution"][str(score)] = (
-            stats["quality_score_distribution"].get(str(score), 0) + 1
-        )
+        stats["quality_score_distribution"][str(score)] = stats["quality_score_distribution"].get(str(score), 0) + 1
 
         if a.get("hidden_dissatisfaction"):
             stats["hidden_dissatisfaction_count"] += 1
@@ -142,10 +150,15 @@ def _log_comparison(dataset: list[dict], analysis_results: list[dict]):
         if meta.get("hidden_dissatisfaction") == analysis.get("hidden_dissatisfaction"):
             match_hidden += 1
 
-    logger.info("--- Comparison: Generator metadata vs. LLM analysis ---")
-    logger.info(f"Intent match: {match_intent}/{total} ({100 * match_intent / total:.1f}%)")
-    logger.info(f"Satisfaction match: {match_satisfaction}/{total} ({100 * match_satisfaction / total:.1f}%)")
-    logger.info(f"Hidden dissatisfaction match: {match_hidden}/{total} ({100 * match_hidden / total:.1f}%)")
+    logger.info("-" * 60)
+    logger.info("Comparison: Generator metadata vs. LLM analysis")
+    logger.info("-" * 60)
+    logger.info(f"  Intent match:                {match_intent}/{total} ({100 * match_intent / total:.1f}%)")
+    logger.info(
+        f"  Satisfaction match:           {match_satisfaction}/{total} ({100 * match_satisfaction / total:.1f}%)"
+    )
+    logger.info(f"  Hidden dissatisfaction match: {match_hidden}/{total} ({100 * match_hidden / total:.1f}%)")
+    logger.info("-" * 60)
 
 
 if __name__ == "__main__":

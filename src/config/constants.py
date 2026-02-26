@@ -8,27 +8,22 @@ INTENT_MAP = {
     "check_payment_methods": "payment_issue",
     "check_invoice": "payment_issue",
     "get_invoice": "payment_issue",
-
     # technical_error
     "registration_problems": "technical_error",
-
     # account_access
     "edit_account": "account_access",
     "delete_account": "account_access",
     "recover_password": "account_access",
     "switch_account": "account_access",
     "create_account": "account_access",
-
     # tariff_question
     "check_cancellation_fee": "tariff_question",
     "newsletter_subscription": "tariff_question",
-
     # refund_request
     "get_refund": "refund_request",
     "track_refund": "refund_request",
     "check_refund_policy": "refund_request",
     "cancel_order": "refund_request",
-
     # other (everything else)
     "change_shipping_address": "other",
     "set_up_shipping_address": "other",

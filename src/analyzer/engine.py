@@ -1,19 +1,23 @@
 import json
-from loguru import logger
+import os
+
 from ollama import Client
 
+from src.analyzer.prompts import build_batch_dialog_prompt, build_single_dialog_prompt
 from src.config.constants import (
+    AGENT_MISTAKES,
     SEED,
     VALID_INTENTS,
-    AGENT_MISTAKES,
 )
+from src.config.logger import logger
 
 
 class DatasetAnalyzer:
-    def __init__(self, ollama_model: str = "llama3.1:8b"):
-        self.client = Client()
+    def __init__(self, ollama_model: str = "llama3.1:8b", ollama_host: str | None = None):
+        host = ollama_host or os.environ.get("OLLAMA_HOST")
+        self.client = Client(host=host)
         self.model = ollama_model
-        logger.info(f"Initialized DatasetAnalyzer with model: {self.model}")
+        logger.info(f"Initialized DatasetAnalyzer with model: {self.model} (host: {host or 'default'})")
 
     def _parse_json_response(self, response_text: str):
         """Parse JSON from LLM response, handling markdown fences and extraction."""
@@ -47,50 +51,7 @@ class DatasetAnalyzer:
     def analyze_dialog(self, dialog: list[dict]) -> dict:
         """Analyze a single dialog using the LLM. Returns full analysis dict."""
         dialog_text = self._format_dialog(dialog)
-
-        prompt = f"""You are an expert customer support quality analyst. Analyze this conversation carefully.
-
-CONVERSATION:
-{dialog_text}
-
-Return a JSON object with ALL of these fields:
-
-1. "intent": The customer's primary intent. Choose from: {json.dumps(VALID_INTENTS)}
-
-2. "satisfaction": The customer's REAL satisfaction. One of: "satisfied", "neutral", "unsatisfied"
-   - "satisfied": Problem clearly resolved, customer is happy
-   - "neutral": Unclear outcome or partial resolution
-   - "unsatisfied": Problem not resolved, customer frustrated or disappointed
-
-3. "quality_score": Agent performance 1-5
-   - 5: Excellent — resolved completely, professional, empathetic
-   - 4: Good — mostly resolved, professional
-   - 3: Average — attempted to help but incomplete
-   - 2: Poor — significant issues
-   - 1: Very poor — unhelpful, rude, or harmful
-
-4. "agent_mistakes": List from {json.dumps(AGENT_MISTAKES)} or empty []
-   - "ignored_question": Did not address the actual question
-   - "incorrect_info": Provided wrong/misleading information
-   - "rude_tone": Dismissive, condescending, or impatient
-   - "no_resolution": No solution or useful next steps given
-   - "unnecessary_escalation": Escalated when could have helped directly
-
-5. "hidden_dissatisfaction": true/false
-   True ONLY when ALL conditions met:
-   - Customer uses polite/accepting language ("thanks", "okay", "I understand")
-   - BUT the actual problem was NOT resolved
-   - Customer appears to be giving up rather than genuinely satisfied
-
-6. "tone_agent": Agent's communication tone. One of: "professional", "casual", "rude"
-
-7. "tone_client": Client's emotional tone. One of: "calm", "frustrated", "angry"
-
-8. "resolution": Whether the problem was resolved. One of: "resolved", "partially_resolved", "unresolved"
-
-9. "resolution_summary": One sentence explaining the resolution status
-
-Return ONLY a JSON object."""
+        prompt = build_single_dialog_prompt(dialog_text)
 
         try:
             response = self.client.generate(
@@ -105,74 +66,76 @@ Return ONLY a JSON object."""
             logger.warning(f"LLM analysis failed: {e}. Using defaults.")
             return self._default_analysis()
 
+    def _fuzzy_match_intent(self, intent: str) -> str:
+        """Fuzzy-match intent against VALID_INTENTS."""
+        if intent in VALID_INTENTS:
+            return intent
+        intent_lower = intent.lower().replace(" ", "_").replace("-", "_")
+        for valid in VALID_INTENTS:
+            if valid in intent_lower or intent_lower in valid:
+                return valid
+        return "other"
+
+    def _validate_enum(self, value: str, allowed: tuple, default: str) -> str:
+        """Return value if it's in allowed, otherwise return default."""
+        return value if value in allowed else default
+
+    def _parse_quality_score(self, raw_score) -> int:
+        """Parse and clamp quality score to 1-5."""
+        try:
+            return max(1, min(5, int(raw_score)))
+        except (TypeError, ValueError):
+            return 3
+
+    def _adjust_quality_score(self, score: int, mistakes: list, resolution: str) -> int:
+        """Adjust quality score based on mistakes and resolution."""
+        adjusted = score - len(mistakes)
+        if resolution == "resolved":
+            adjusted += 1
+        elif resolution == "unresolved":
+            adjusted -= 1
+        return max(1, min(5, adjusted))
+
     def _validate_analysis(self, result: dict) -> dict:
         """Validate and normalize LLM analysis output."""
         validated = {}
 
-        # Intent — fuzzy match
-        intent = result.get("intent", "other")
-        if intent not in VALID_INTENTS:
-            intent_lower = intent.lower().replace(" ", "_").replace("-", "_")
-            matched = False
-            for valid in VALID_INTENTS:
-                if valid in intent_lower or intent_lower in valid:
-                    intent = valid
-                    matched = True
-                    break
-            if not matched:
-                intent = "other"
-        validated["intent"] = intent
+        validated["intent"] = self._fuzzy_match_intent(result.get("intent", "other"))
 
-        # Satisfaction
-        satisfaction = result.get("satisfaction", "neutral")
-        if satisfaction not in ("satisfied", "neutral", "unsatisfied"):
-            satisfaction = "neutral"
-        validated["satisfaction"] = satisfaction
+        validated["satisfaction"] = self._validate_enum(
+            result.get("satisfaction", "neutral"),
+            ("satisfied", "neutral", "unsatisfied"),
+            "neutral",
+        )
 
-        # Quality score — base from LLM
-        score = result.get("quality_score", 3)
-        try:
-            score = int(score)
-            score = max(1, min(5, score))
-        except (TypeError, ValueError):
-            score = 3
+        score = self._parse_quality_score(result.get("quality_score", 3))
         validated["quality_score_raw"] = score
 
-        # Agent mistakes
         mistakes = result.get("agent_mistakes", [])
         if not isinstance(mistakes, list):
             mistakes = []
         validated["agent_mistakes"] = [m for m in mistakes if m in AGENT_MISTAKES]
 
-        # Resolution
-        resolution = result.get("resolution", "unresolved")
-        if resolution not in ("resolved", "partially_resolved", "unresolved"):
-            resolution = "unresolved"
+        resolution = self._validate_enum(
+            result.get("resolution", "unresolved"),
+            ("resolved", "partially_resolved", "unresolved"),
+            "unresolved",
+        )
 
-        # Adjusted quality score: -1 per mistake, +1 if resolved
-        adjusted = score
-        adjusted -= len(validated["agent_mistakes"])
-        if resolution == "resolved":
-            adjusted += 1
-        elif resolution == "unresolved":
-            adjusted -= 1
-        validated["quality_score"] = max(1, min(5, adjusted))
-
-        # Hidden dissatisfaction
+        validated["quality_score"] = self._adjust_quality_score(score, validated["agent_mistakes"], resolution)
         validated["hidden_dissatisfaction"] = bool(result.get("hidden_dissatisfaction", False))
 
-        # Tone analysis
-        tone_agent = result.get("tone_agent", "professional")
-        if tone_agent not in ("professional", "casual", "rude"):
-            tone_agent = "professional"
-        validated["tone_agent"] = tone_agent
+        validated["tone_agent"] = self._validate_enum(
+            result.get("tone_agent", "professional"),
+            ("professional", "casual", "rude"),
+            "professional",
+        )
+        validated["tone_client"] = self._validate_enum(
+            result.get("tone_client", "calm"),
+            ("calm", "frustrated", "angry"),
+            "calm",
+        )
 
-        tone_client = result.get("tone_client", "calm")
-        if tone_client not in ("calm", "frustrated", "angry"):
-            tone_client = "calm"
-        validated["tone_client"] = tone_client
-
-        # Resolution
         validated["resolution"] = resolution
         validated["resolution_summary"] = str(result.get("resolution_summary", ""))[:200]
 
@@ -197,47 +160,34 @@ Return ONLY a JSON object."""
         """Analyze multiple dialogs in batches for efficiency."""
         results = []
         total = len(dialogs)
-        logger.info(f"Analyzing {total} dialogs in batches of {batch_size}...")
+        num_batches = (total + batch_size - 1) // batch_size
+        logger.info(f"Analyzing {total} dialogs in {num_batches} batches (batch_size={batch_size})...")
 
         for i in range(0, total, batch_size):
             batch = dialogs[i : i + batch_size]
+            batch_num = i // batch_size + 1
             batch_results = self._analyze_batch_prompt(batch)
             results.extend(batch_results)
 
             done = min(i + batch_size, total)
-            if done % 25 == 0 or done >= total:
-                logger.info(f"  Progress: {done}/{total}")
+            pct = done / total * 100
+            logger.info(f"  Batch {batch_num}/{num_batches} complete — {done}/{total} dialogs ({pct:.0f}%)")
 
+        logger.success(f"Analysis batch complete — {len(results)} dialogs analyzed")
         return results
+
+    def _match_batch_result(self, parsed: list, idx: int) -> dict | None:
+        """Find the matching result for a given index in parsed LLM output."""
+        for r in parsed:
+            if isinstance(r, dict) and r.get("idx") == idx:
+                return r
+        if idx < len(parsed) and isinstance(parsed[idx], dict):
+            return parsed[idx]
+        return None
 
     def _analyze_batch_prompt(self, batch: list[dict]) -> list[dict]:
         """Analyze a batch of dialogs with a single LLM call."""
-        prompt = f"""You are an expert customer support quality analyst. Analyze each conversation below.
-
-For each conversation determine ALL of these:
-- "intent": one of {json.dumps(VALID_INTENTS)}
-- "satisfaction": "satisfied", "neutral", or "unsatisfied"
-- "quality_score": 1-5 (5=excellent, 1=very poor)
-- "agent_mistakes": list from {json.dumps(AGENT_MISTAKES)} or []
-- "hidden_dissatisfaction": true if customer seems polite but problem NOT resolved
-- "tone_agent": "professional", "casual", or "rude"
-- "tone_client": "calm", "frustrated", or "angry"
-- "resolution": "resolved", "partially_resolved", or "unresolved"
-- "resolution_summary": one sentence about resolution status
-
-IMPORTANT for hidden_dissatisfaction:
-If customer says "okay thanks", "I understand", "fine" but agent did NOT actually solve the problem, set true.
-
-"""
-        for j, dialog_data in enumerate(batch):
-            dialog_msgs = dialog_data.get("dialog", [])
-            prompt += f"\n--- CONVERSATION {j} ---\n"
-            for msg in dialog_msgs:
-                prompt += f"{msg['role'].capitalize()}: {msg['text'][:300]}\n"
-
-        prompt += f"""
-Return a JSON array of exactly {len(batch)} objects. Each must have "idx" (0-based index) plus all fields above.
-Return ONLY the JSON array."""
+        prompt = build_batch_dialog_prompt(batch)
 
         try:
             response = self.client.generate(
@@ -255,15 +205,8 @@ Return ONLY the JSON array."""
 
             results = []
             for j in range(len(batch)):
-                matched = None
-                for r in parsed:
-                    if isinstance(r, dict) and r.get("idx") == j:
-                        matched = r
-                        break
-                if matched is None and j < len(parsed):
-                    matched = parsed[j]
-
-                if matched and isinstance(matched, dict):
+                matched = self._match_batch_result(parsed, j)
+                if matched:
                     results.append(self._validate_analysis(matched))
                 else:
                     results.append(self.analyze_dialog(batch[j].get("dialog", [])))
