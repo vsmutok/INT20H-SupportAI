@@ -1,6 +1,33 @@
-# SupportAI: Dataset Generator and Analyzer
+# 🏆 SupportAI: Dataset Generator and Analyzer
+
+> **Built for the [INT20H](https://best.kpi.ua/int20h-2026/) hackathon — one of the largest student hackathons in Ukraine.**
 
 A comprehensive tool for generating and analyzing customer support dialogue datasets using Large Language Models (LLM) and combinatorial augmentation. This project evaluates support quality, identifies agent mistakes, and models complex customer interactions including hidden dissatisfaction.
+
+## 📋 Hackathon Challenge
+
+A company wants to automate the analysis of its customer support operations. The goal is to generate a dataset of client–agent chat dialogs and build a tool that evaluates support quality. The system must determine not only the topic of each request, but also the real level of customer satisfaction and the quality of the agent's response.
+
+**Core requirements:**
+
+1. **Generate a chat dataset** between a client and a support agent with diverse scenarios:
+   - Payment issues, technical errors, account access, tariff questions, refund requests
+   - Successful, problematic, conflict cases, and cases with agent mistakes
+
+2. **Analyze each dialog** and determine:
+   - `intent` of the request (category or `other`)
+   - `satisfaction` of the client (`satisfied` / `neutral` / `unsatisfied`)
+   - `quality_score` of the support agent's work (scale 1–5)
+   - `agent_mistakes` — list of agent errors (`ignored_question`, `incorrect_info`, `rude_tone`, `no_resolution`, `unnecessary_escalation`)
+
+3. **Important details:**
+   - Some dialogs must contain **hidden dissatisfaction** (the client formally thanks the agent, but the problem remains unresolved)
+   - Some cases must contain tonal or logical **agent mistakes**
+   - LLM usage is mandatory; results must be deterministic
+
+> Full task description: [`AI_TestTask.pdf`](AI_TestTask.pdf)
+
+---
 
 ## Why SupportAI?
 
