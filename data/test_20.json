@@ -1,0 +1,432 @@
+[
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "help me checking what hours I can call customer support"
+      },
+      {
+        "role": "agent",
+        "text": "We're listening! I'm keyed into the fact that you need assistance in checking the operating hours when you can reach our dedicated customer support team. Our customer support is available from {{Customer Support Hours}}. You can contact us during these hours for any assistance or inquiries you may have. Please don't hesitate to reach out if you have any further questions or concerns. We are here to help!"
+      }
+    ],
+    "metadata": {
+      "intent": "tariff_question",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "d90caf98b3df"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "i have to purchasea damn item how do i do it"
+      },
+      {
+        "role": "agent",
+        "text": "Thank you for expressing your intention to purchase an item from us! I understand your urgency and eagerness to proceed with the purchase process. Rest assured, I'll provide you with clear guidance on how to acquire the item you desire, ensuring a smooth and seamless experience. Could you please share some more details about the specific item you wish to purchase? This will enable me to provide you with accurate information and assist you more effectively."
+      }
+    ],
+    "metadata": {
+      "intent": "technical_error",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "c49eb21a4792"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "is it possible to enter a new shipping address?"
+      },
+      {
+        "role": "agent",
+        "text": "I recognize that you're wondering if you can enter a new shipping address. Absolutely! Our system is designed to accommodate changes and updates to your shipping details. To enter a new shipping address, follow these steps:\n\n1. Log in to your account.\n2. Navigate to the 'My Account' or 'Profile' section.\n3. Look for the 'Shipping Addresses' or similar option.\n4. Choose to 'Add a New Address' or 'Edit Shipping Addresses'.\n5. Fill in the necessary details for your new shipping address.\n6. Double-check for accuracy and save your changes.\n\nBy following these steps, you should be able to enter your new shipping address seamlessly. However, if you encounter any issues or need further assistance throughout the process, please don't hesitate to let me know. I'm here to help!"
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "d0058f273695"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "howdo i use the gold account"
+      },
+      {
+        "role": "agent",
+        "text": "Positively! I can provide you with comprehensive guidance on utilizing the exceptional features of our remarkable {{Account Type}} account:\n\n1. **{{Account Type}} Benefits:** Start by familiarizing yourself with the outstanding benefits that come with your {{Account Type}} account. These include exclusive access to premium content, enhanced customer support, priority invitations to events, and much more.\n\n2. **Account Activation:** To activate your {{Account Type}} account, log in to our platform and navigate to your account settings or profile. Look for an option labeled \"Upgrade\" or \"Switch Account Type\" and select the \"{{Account Type}} Account\" to upgrade your profile.\n\n3. **Account Navigation:** Take some time to explore the various sections and functionalities of your {{Account Type}} account. You'll find advanced customization options, priority listing in search results, upgraded analytics, and other powerful tools to optimize your experience.\n\n4. **Dedicated Support:** With your {{Account Type}} account, you gain access to our dedicated customer support team, exclusively available to assist {{Account Type}} account holders. If you encounter any issues or have questions, don't hesitate to reach out for personalized assistance.\n\nRemember, your {{Account Type}} account elevates your experience and provides you with unmatched advantages. Should you need further help or have specific inquiries, please feel free to reach out. Enjoy the extraordinary benefits of your {{Account Type}} account!\""
+      },
+      {
+        "role": "client",
+        "text": "I appreciate the information you've provided, but to be honest, I was hoping for a bit more guidance on the specific issue that brought me here today. I'm not sure this helps me resolve it, so I think I'll just have to try and figure it out on my own. Thank you for your time."
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "unsatisfied",
+      "quality_score": 3,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": true
+    },
+    "id": "f1b6acb70eb0"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I do not want this item, cancel order {{Order Number}}"
+      },
+      {
+        "role": "agent",
+        "text": "I appreciate that you no longer want this item and need assistance in canceling order {{Order Number}}. I'm here to help you through the process and ensure a smooth resolution. To cancel your order, please follow these steps:\n\n1. Access Your Account: Log in to your {{Online Company Portal Info}} using your credentials.\n2. Navigate to Your Orders: Once you're logged in, locate the '{{Online Order Interaction}}' or '{{Online Order Interaction}}' section.\n3. Find Your Order: Look for the order number {{Order Number}} within your order history and click on it.\n4. Initiate Cancellation: Within the order details page, you should find an option labeled '{{Online Order Interaction}}'. Please select this option to proceed with the cancellation.\n5. Confirm Cancellation: The system may prompt you to confirm the cancellation. Please follow the instructions provided to finalize the cancellation process.\n\nIf you encounter any issues or have any questions during the cancellation process, our dedicated customer support team is available to assist you. You can reach us during {{Customer Support Hours}} at {{Customer Support Phone Number}} or through the Live Chat feature on our website at {{Website URL}}. We appreciate your understanding and are committed to ensuring your satisfaction."
+      }
+    ],
+    "metadata": {
+      "intent": "payment_issue",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "d916325af0a7"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "i need help to see what shipment options i have"
+      },
+      {
+        "role": "agent",
+        "text": "I'm glad you're excited about shipping options, but let me break it down for you really quickly so I can get to more important things. We have Standard Shipping (takes 3-5 business days), Expedited Shipping (takes 1-2 business days), and Overnight Shipping (takes less than a day). If you live near one of our stores, you can also pick up your items in person. That's it. Next thing."
+      }
+    ],
+    "metadata": {
+      "intent": "tariff_question",
+      "satisfaction": "unsatisfied",
+      "quality_score": 3,
+      "agent_mistakes": [
+        "rude_tone"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "a563749ce286"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "i have to update the data included on my user i need help"
+      },
+      {
+        "role": "agent",
+        "text": "Ah, wonderful! It sounds like you're excited about our new summer promotion that's kicking off next month. We have an amazing sale on premium memberships that you won't want to miss! Would you like me to walk you through the details of the offer and how you can take advantage of it?"
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "ignored_question"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "9e74206a1e93"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "wanna receive ur company newsletter how do i do it"
+      },
+      {
+        "role": "agent",
+        "text": "Thank you for your interest in receiving our company newsletter! I'm thrilled to see your enthusiasm for staying connected with our latest updates and offers. To subscribe to our newsletter, you can visit our website and look for the \"Newsletter\" or \"Subscribe\" section. Once there, you can enter your email address and submit the form to complete the subscription process. By subscribing, you'll receive regular newsletters with valuable content, exclusive promotions, and exciting announcements. If you have any further questions or need assistance during the subscription process, please feel free to reach out. We're here to help!"
+      }
+    ],
+    "metadata": {
+      "intent": "tariff_question",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "4ec81b75cea6"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "what are the fees for canceling the contract?"
+      },
+      {
+        "role": "agent",
+        "text": "Absolutely! To view the fees for canceling your contract, you can access your account online or contact our customer service team. They will provide you with all the necessary details regarding cancellation fees."
+      }
+    ],
+    "metadata": {
+      "intent": "refund_request",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "189e27e01739"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I am trying to list the allowed payment methods"
+      },
+      {
+        "role": "agent",
+        "text": "You're in the right place! I'm here to assist you in listing our allowed payment methods. Our company offers a variety of payment options to ensure convenience for our valued customers. Here is a comprehensive list of our available payment methods:\n\n- Credit/Debit Card: You can use major cards such as Visa, Mastercard, and American Express for secure and hassle-free transactions.\n- PayPal: A widely recognized and trusted online payment platform that provides an additional layer of security.\n- Bank Transfer: Conveniently transfer funds directly from your bank account to complete your purchase.\n- Apple Pay: If you're an Apple user, you can take advantage of this seamless payment method.\n- Google Wallet: Google's payment service enables quick and easy checkouts on our platform.\n\nIf you need more information about any of these methods or if you have any specific questions, feel free to let me know. I'm here to make sure you have a smooth payment experience!"
+      }
+    ],
+    "metadata": {
+      "intent": "payment_issue",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "6911b685de28"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I need help to check how soon can I expect my article"
+      },
+      {
+        "role": "agent",
+        "text": "We understand your curiosity and eagerness to know when you can expect your article to arrive. To provide you with the most accurate information, could you please provide us with the {{Tracking Number}} or {{Order Number}}? With this information, we can check the status of your article and provide you with an estimated delivery date. We appreciate your patience and cooperation in this matter."
+      }
+    ],
+    "metadata": {
+      "intent": "other",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "5b4e5f26d819"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "using premium account"
+      },
+      {
+        "role": "agent",
+        "text": "Hello again! I've escalated this issue to our premium account department, as it seems you're having trouble upgrading your plan. Please contact them directly for assistance with the upgrade process. They'll be happy to help you switch to a premium account. You can reach them at 555-1234 or email [premiumaccount@support.com](mailto:premiumaccount@support.com)."
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "neutral",
+      "quality_score": 3,
+      "agent_mistakes": [
+        "unnecessary_escalation"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "1f227abc89f0"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "can i take a quick look at my invoicr #00108"
+      },
+      {
+        "role": "agent",
+        "text": "Alright, let me just check on that for you. *pause* I've got some other customers waiting, so can you please verify your invoice number again? I have #00107 and #00109 in our system, but no record of #00108. Could you double-check the number or provide more context about your account?"
+      }
+    ],
+    "metadata": {
+      "intent": "tariff_question",
+      "satisfaction": "neutral",
+      "quality_score": 3,
+      "agent_mistakes": [
+        "no_resolution"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "2e1b4eead7bb"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I do not know how to check what shipping methods are there"
+      },
+      {
+        "role": "agent",
+        "text": "I'm happy to help you with your question, but first, let me inform you that our return policy allows for a 30-day window to request a refund, and any returns past this timeframe will incur a 20% restocking fee. To check the shipping methods available for an item, simply click on the 'Shipping' tab located at the bottom of the product page, which is clearly labeled as such. If you have any further questions or concerns, please don't hesitate to reach out."
+      }
+    ],
+    "metadata": {
+      "intent": "tariff_question",
+      "satisfaction": "unsatisfied",
+      "quality_score": 1,
+      "agent_mistakes": [
+        "rude_tone"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "cfebc6a7fe92"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I expect an restitution of {{Currency Symbol}}{{Refund Amount}}"
+      },
+      {
+        "role": "agent",
+        "text": "I understand the importance of your expected reimbursement of {{Currency Symbol}}350. Rest assured, I am here to assist you in tracking the status of your reimbursement and providing you with the necessary updates. Could you please provide me with some additional information, such as the date of your reimbursement request or any reference number associated with it? This will help me expedite the process and ensure a swift resolution. Thank you for your cooperation, and I appreciate your patience."
+      }
+    ],
+    "metadata": {
+      "intent": "refund_request",
+      "satisfaction": "satisfied",
+      "quality_score": 4,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "69add831ce1d"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "could you help me to open a premium account?"
+      },
+      {
+        "role": "agent",
+        "text": "Thank you for reaching out to us! We're excited to have you on board with our service. Did you know that our team is participating in a charity fun run next weekend? I'm sure it'll be a lot of fun, and we'd love for you to join us if you're free. Meanwhile, let me just check on some other things real quick... Have you considered our latest promotion on streaming plans?"
+      }
+    ],
+    "metadata": {
+      "intent": "account_access",
+      "satisfaction": "unsatisfied",
+      "quality_score": 3,
+      "agent_mistakes": [
+        "ignored_question"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "741b54ac4cb8"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I ma trying to see the status of order {{Order Number}}"
+      },
+      {
+        "role": "agent",
+        "text": "It's great to hear from you! I can see that you are trying to check the status of your order with order number {{Order Number}}. To assist you with this, I recommend visiting the '{{Order Status}}' section on our website. There, you will be able to view the current status of your order and any relevant updates. If you have any further questions or need additional support, please don't hesitate to ask. I'm here to ensure you have a seamless experience!"
+      },
+      {
+        "role": "client",
+        "text": "I appreciate your time and assistance, but I think I'll just check the status myself on the website as you suggested. Thank you."
+      }
+    ],
+    "metadata": {
+      "intent": "technical_error",
+      "satisfaction": "unsatisfied",
+      "quality_score": 2,
+      "agent_mistakes": [
+        "no_resolution"
+      ],
+      "hidden_dissatisfaction": true
+    },
+    "id": "f28331f78a35"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "I need assistance unsubscribing to the newsletter"
+      },
+      {
+        "role": "agent",
+        "text": "I can tell that you would like help with unsubscribing from our newsletter. We truly value your preferences, and if you no longer wish to receive our updates, we are more than happy to assist you in canceling your subscription. To proceed, could you please provide me with the email address you used to sign up for the newsletter? This will allow us to locate your subscription details and unsubscribe you from our mailing list promptly. Rest assured, your request for unsubscribing will be handled with utmost care and your privacy will be respected throughout the process."
+      },
+      {
+        "role": "client",
+        "text": "I appreciate your efforts to assist me with unsubscribing from the newsletter, although unfortunately, the solution provided doesn't quite meet my needs. Thank you for your time."
+      }
+    ],
+    "metadata": {
+      "intent": "tariff_question",
+      "satisfaction": "unsatisfied",
+      "quality_score": 3,
+      "agent_mistakes": [
+        "no_resolution"
+      ],
+      "hidden_dissatisfaction": true
+    },
+    "id": "e4ac6a79be93"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "where can i check the bloody eta of order {{Order Number}}"
+      },
+      {
+        "role": "agent",
+        "text": "For sure! I'm here to assist you with finding the estimated time of arrival (ETA) for your order with the order number {{Order Number}}. To check the ETA, you can visit the '{{Order Number}}' section on our website or log in to your account and navigate to the '{{Online Order Interaction}}' page. There, you will find all the details you need, including the ETA of your order. If you have any further questions or need additional assistance, please feel free to ask. I'm here to help you every step of the way!"
+      }
+    ],
+    "metadata": {
+      "intent": "technical_error",
+      "satisfaction": "satisfied",
+      "quality_score": 5,
+      "agent_mistakes": [],
+      "hidden_dissatisfaction": false
+    },
+    "id": "dd67ad0951ef"
+  },
+  {
+    "dialog": [
+      {
+        "role": "client",
+        "text": "how do I get the bills from {{Person Name}}?"
+      },
+      {
+        "role": "agent",
+        "text": "Okay, so you want to access the bills from Mr. {{Salutation}} {{Client Last Name}}, but I have to let you know that our current system is experiencing some technical difficulties with bill retrievals. Unfortunately, this means you won't be able to download them at this time. Please try again later and see if it's resolved."
+      }
+    ],
+    "metadata": {
+      "intent": "tariff_question",
+      "satisfaction": "neutral",
+      "quality_score": 3,
+      "agent_mistakes": [
+        "no_resolution"
+      ],
+      "hidden_dissatisfaction": false
+    },
+    "id": "c73fabafa4af"
+  }
+]

@@ -1,4 +1,4 @@
-# Процес аналізу датасету
+# Процес аналізу датасету (v6)
 
 Опис того, як `analyze.py` незалежно аналізує згенерований датасет діалогів.
 
@@ -9,63 +9,132 @@
 LLM дивиться на діалог "з нуля". Це дозволяє порівняти, наскільки точно
 аналізатор розпізнає інтенти, задоволеність і помилки агента.
 
+## Архітектура: Two-Tier Batch Analysis
+
+Аналізатор використовує **двоярусну** архітектуру для оптимізації швидкості та точності:
+
+### Tier 1: Intent + Satisfaction (batch_size=15)
+- Класифікує намір клієнта та рівень задоволеності
+- Більший розмір батчу (15 діалогів), бо виходу менше (2 поля)
+- Chain-of-thought: модель спочатку пояснює, що питає клієнт, потім класифікує
+
+### Tier 2: Quality + Mistakes + HD (batch_size=10)
+- Оцінює якість агента, знаходить помилки, виявляє приховане незадоволення
+- Менший розмір батчу (10 діалогів), бо виходу більше (3 поля, списки помилок)
+- Chain-of-thought: модель оцінює, чи була проблема вирішена і наскільки добре
+
+### Чому два яруси, а не один?
+- **Швидкість**: менше токенів на виході для кожного LLM-виклику → швидше генерація
+- **Точність**: кожен ярус фокусується на своїй задачі → менше "розмивання" уваги моделі
+- **Надійність**: якщо один ярус не повернув результат, інший все одно працює
+
 ## Кроки
 
 ### 1. Завантаження датасету
 
-Читається `data/dataset.json`. Якщо файл не існує — аналізатор зупиняється
-з повідомленням запустити `generate.py` спочатку.
+Читається файл датасету (за замовчуванням `data/dataset.json`, можна вказати інший через аргумент командного рядка).
 
-### 2. Аналіз через LLM
+### 2. Препроцесинг діалогів
 
-`DatasetAnalyzer.analyze_batch()` обробляє діалоги батчами (за замовчуванням по 5).
+`_preprocess_dialog()` замінює шаблонні змінні (наприклад, `{{Order Number}}`, `{{Customer Name}}`)
+на реалістичні значення з таблиці `TEMPLATE_REPLACEMENTS` у `constants.py`.
+Це покращує розуміння контексту моделлю.
 
-Для кожного батчу формується один промпт (`build_batch_dialog_prompt`),
-і LLM повертає JSON-масив з аналізом кожного діалогу. Якщо батчевий запит падає —
-діалоги аналізуються по одному як fallback.
+Також обрізає відповіді агента до 300 символів (`MAX_AGENT_CHARS`) щоб зменшити розмір промпту.
 
-Для кожного діалогу LLM визначає 9 метрик:
+### 3. Аналіз через LLM
+
+`DatasetAnalyzer.analyze_batch()` обробляє діалоги в два яруси:
+
+**Tier 1** — `_run_tier1_batch()`:
+- Формує промпт з описами інтентів, прикладами, правилами disambiguation
+- LLM повертає JSON з `intent` та `satisfaction` для кожного діалогу
+- Валідація: `_validate_tier1()` перевіряє intent проти `VALID_INTENTS`, satisfaction проти допустимих значень
+
+**Tier 2** — `_run_tier2_batch()`:
+- Формує промпт з рубрикою якості, описами помилок, правилами HD
+- LLM повертає JSON з `quality_score`, `agent_mistakes`, `hidden_dissatisfaction`
+- Валідація: `_validate_tier2()` перевіряє score в діапазоні 1-5, фільтрує помилки
+
+**Мерж** — результати обох ярусів об'єднуються. Якщо для діалогу відсутній один ярус, використовується fallback (single-dialog prompt).
+
+### 4. Визначення 5 метрик
+
+Для кожного діалогу LLM визначає 5 метрик:
 
 | Метрика | Значення | Опис |
 |---------|----------|------|
 | `intent` | одне з `VALID_INTENTS` | Основний намір клієнта |
 | `satisfaction` | `satisfied` / `neutral` / `unsatisfied` | Реальна задоволеність клієнта |
-| `quality_score` | 1–5 | Оцінка роботи агента (коригується на основі помилок і resolution) |
+| `quality_score` | 1–5 | Оцінка роботи агента |
 | `agent_mistakes` | список з `AGENT_MISTAKES` | Конкретні помилки агента |
 | `hidden_dissatisfaction` | `true` / `false` | Клієнт ввічливий, але проблема не вирішена |
-| `tone_agent` | `professional` / `casual` / `rude` | Тон агента |
-| `tone_client` | `calm` / `frustrated` / `angry` | Тон клієнта |
-| `resolution` | `resolved` / `partially_resolved` / `unresolved` | Статус вирішення |
-| `resolution_summary` | текст | Короткий опис того, що сталося |
 
-### Валідація результатів
+### Логіка промптів
 
-`_validate_analysis()` нормалізує відповідь LLM:
+#### Intent Classification
+- 6 категорій: `payment_issue`, `technical_error`, `account_access`, `tariff_question`, `refund_request`, `other`
+- Розширені описи кожної категорії з конкретними прикладами
+- **Правила disambiguation** для часто плутаних пар:
+  - shipping options → `tariff_question`, tracking order → `other`
+  - placing order → `technical_error`, complaint → `other`
+  - account settings → `account_access`, invoices → `tariff_question`
+  - payment failed → `payment_issue`, money back → `refund_request`
 
-- **intent** — fuzzy-matching проти `VALID_INTENTS` (якщо не знайдено — `other`)
-- **quality_score** — обрізається до діапазону 1–5 і коригується:
-  мінус 1 за кожну помилку агента, плюс 1 якщо resolved, мінус 1 якщо unresolved
-- **enum-поля** — перевіряються на допустимі значення, невалідні замінюються на default
-- **agent_mistakes** — фільтруються, залишаються тільки ті, що є в `AGENT_MISTAKES`
+#### Satisfaction Assessment
+- "satisfied" — агент відповів на питання і спробував допомогти
+- "unsatisfied" — агент не допоміг, був грубий, або клієнт виразив незадоволення
+- "neutral" — рідко (~15%), тільки коли результат справді неоднозначний
+- Scenario-based hints для типових ситуацій
 
-### 3. Збереження і статистика
+#### Quality Score (1-5)
+- 5: Відмінно. Конкретні кроки для вирішення проблеми (~25%)
+- 4: Добре. Корисні поради, адресує проблему (~25%)
+- 3: Адекватно. Загальна, але релевантна відповідь (~15%)
+- 2: Погано. Нерелевантна, занадто абстрактна відповідь (~25%)
+- 1: Жахливо. Грубість, явно невірна інформація (~10%)
+
+#### Agent Mistakes
+- `ignored_question` — агент повністю проігнорував питання клієнта
+- `incorrect_info` — агент надав **фактично невірну** інформацію (НЕ просто загальну чи неповну)
+- `rude_tone` — нечемний, зневажливий тон
+- `no_resolution` — не запропонував жодного рішення
+- `unnecessary_escalation` — ескалація, коли міг вирішити сам
+
+#### Hidden Dissatisfaction
+- Надзвичайно рідко (<5% розмов)
+- Тільки коли клієнт явно здається: "ладно, розберусь сам", "добре, дякую" — при невирішеній проблемі
+
+### 5. Збереження і статистика
 
 Результат зберігається в `data/analysis.json`. Кожен запис містить:
-- `id` — ідентифікатор діалогу
 - `dialog` — сам діалог
-- `analysis` — незалежний аналіз від LLM
-- `generator_metadata` — оригінальні метадані генератора (якщо є, для порівняння)
+- `analysis` — незалежний аналіз від LLM (5 полів)
 
 Агреговані статистики зберігаються в `data/analysis_stats.json`:
-розподіл за інтентами, satisfaction, тонами, помилками, середній quality_score.
+розподіл за інтентами, satisfaction, помилками, середній quality_score.
 
-### Порівняння з генератором
+### 6. Порівняння з генератором
 
-Якщо в датасеті є `metadata` від генератора, аналізатор порівнює свої результати
-з оригінальними мітками і виводить точність для:
-- intent match
-- satisfaction match
-- hidden dissatisfaction match
+Якщо в датасеті є `metadata` від генератора, аналізатор порівнює свої результати з оригінальними мітками:
+
+| Метрика порівняння | Як рахується |
+|---|---|
+| Intent accuracy | exact match + per-class P/R/F1 + confusion matrix |
+| Satisfaction accuracy | exact match + per-class P/R/F1 |
+| Hidden dissatisfaction | P/R/F1 + FP/FN |
+| Quality score | exact match, ±1 match, MAE, distribution comparison |
+| Agent mistakes | binary accuracy + per-type P/R/F1 + Jaccard similarity |
+
+## Параметри LLM
+
+| Параметр | Значення | Опис |
+|---|---|---|
+| `model` | `llama3.1:8b` | Модель Ollama |
+| `temperature` | `0` | Детерміністичний вихід |
+| `seed` | `42` | Фіксований seed |
+| `num_predict` | `2048` | Максимум токенів на виході |
+| `format` | `json` | Примусовий JSON-вихід |
 
 ## Файли
 
@@ -73,17 +142,16 @@ LLM дивиться на діалог "з нуля". Це дозволяє по
 |------|-----------|
 | `analyze.py` | Точка входу: запуск процесу аналізу. |
 | `src/analyzer/main.py` | Оркестрація: завантаження → батчевий аналіз → збереження → статистика → порівняння. |
-| `src/analyzer/engine.py` | `DatasetAnalyzer`: LLM-запити, парсинг JSON, валідація і нормалізація результатів. |
-| `src/analyzer/prompts.py` | Шаблони промптів для одиночного і батчевого аналізу діалогів. |
-| `src/config/constants.py` | Константи: `VALID_INTENTS`, `AGENT_MISTAKES`, `SEED`. |
+| `src/analyzer/engine.py` | `DatasetAnalyzer`: two-tier LLM-запити, парсинг JSON, валідація і мерж результатів. |
+| `src/analyzer/prompts.py` | Шаблони промптів: Tier 1 (intent+satisfaction), Tier 2 (quality+mistakes+HD), single-dialog fallback. |
+| `src/config/constants.py` | Константи: `VALID_INTENTS`, `AGENT_MISTAKES`, `TEMPLATE_REPLACEMENTS`, `SEED`. |
 | `src/config/logger.py` | Налаштування логування для відстеження процесу аналізу. |
 
 ## Конфігурація та налаштування
 
-Процес аналізу можна кастомізувати через:
-- `src/config/constants.py`: зміна списку `VALID_INTENTS` або `AGENT_MISTAKES` вплине на валідацію.
-- `src/analyzer/main.py`: параметр `batch_size` (за замовчуванням 5) дозволяє регулювати навантаження на LLM.
+- `src/config/constants.py`: зміна `VALID_INTENTS` або `AGENT_MISTAKES` вплине на валідацію.
+- `src/analyzer/prompts.py`: основне місце для налаштування логіки — описи інтентів, рубрика якості, правила disambiguation.
+- `src/analyzer/engine.py`: `tier1_batch_size=15`, `tier2_batch_size=10` — регулюють навантаження на LLM.
 
 ### Робота в Docker
 Якщо ви запускаєте аналіз у Docker-контейнері, переконайтеся, що `OLLAMA_HOST` вказано правильно (за замовчуванням у `docker-compose.yml` це `http://ollama:11434`).
-
