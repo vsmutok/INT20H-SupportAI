@@ -35,6 +35,23 @@ Generating high-quality, diverse support datasets is hard. SupportAI solves this
 - **Partial Recovery**: If a batch partially fails, successfully parsed results are kept and only missing dialogs fall back to single-dialog analysis
 - **Comprehensive Comparison**: Per-class precision/recall/F1, confusion matrices, Jaccard similarity for all 5 metrics
 
+## Benchmark Results
+
+Analyzer v6 tested across multiple datasets with different characteristics:
+
+| Metric | 300 dialogs | 1000 dialogs | 1000 (from 5000) |
+|--------|:-----------:|:------------:|:----------------:|
+| **Intent accuracy** | 70.3% | 59.5% | 68.3% |
+| **Satisfaction accuracy** | 54.3% | 60.9% | 46.7% |
+| **Hidden dissatisfaction F1** | 0.54 | 0.54 | 0.48 |
+| **Quality score ±1** | 73.7% | 69.8% | 72.0% |
+| **Mistakes binary accuracy** | 70.7% | 70.3% | 71.4% |
+| **Mistakes Jaccard** | 0.54 | 0.51 | 0.55 |
+
+- **300 dialogs**: Original dataset (2-6 messages per dialog, no template artifacts)
+- **1000 dialogs**: Extended dataset (mostly 2-message dialogs, some `{{template}}` leftovers)
+- **1000 from 5000**: Stratified sample from 5000-dialog dataset (2-6 messages, clean templates, all 60 intent×satisfaction×quality combinations covered)
+
 ## Project Structure
 
 ```text
