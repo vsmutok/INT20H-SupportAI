@@ -1,19 +1,27 @@
 {
-  "total": 300,
+  "avg_quality_score": 3.04,
   "by_intent": {
+    "account_access": 53,
+    "other": 30,
+    "payment_issue": 23,
     "refund_request": 54,
     "tariff_question": 87,
-    "payment_issue": 23,
-    "technical_error": 53,
-    "account_access": 53,
-    "other": 30
+    "technical_error": 53
   },
   "by_satisfaction": {
-    "unsatisfied": 141,
+    "neutral": 20,
     "satisfied": 139,
-    "neutral": 20
+    "unsatisfied": 141
   },
-  "avg_quality_score": 3.04,
+  "elapsed_seconds": 594.8,
+  "hidden_dissatisfaction_count": 26,
+  "mistake_frequency": {
+    "ignored_question": 26,
+    "incorrect_info": 55,
+    "no_resolution": 69,
+    "rude_tone": 25,
+    "unnecessary_escalation": 24
+  },
   "quality_score_distribution": {
     "1": 38,
     "2": 71,
@@ -21,14 +29,6 @@
     "4": 76,
     "5": 42
   },
-  "hidden_dissatisfaction_count": 26,
-  "with_mistakes_count": 168,
-  "mistake_frequency": {
-    "rude_tone": 25,
-    "no_resolution": 69,
-    "incorrect_info": 55,
-    "ignored_question": 26,
-    "unnecessary_escalation": 24
-  },
-  "elapsed_seconds": 594.8
+  "total": 300,
+  "with_mistakes_count": 168
 }

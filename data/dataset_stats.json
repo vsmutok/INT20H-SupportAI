@@ -1,32 +1,32 @@
 {
-  "total": 300,
-  "by_satisfaction": {
-    "unsatisfied": 107,
-    "satisfied": 148,
-    "neutral": 45
-  },
   "by_intent": {
-    "refund_request": 52,
-    "payment_issue": 52,
-    "technical_error": 48,
-    "account_access": 48,
-    "tariff_question": 48,
-    "other": 52
+    "account_access": 833,
+    "other": 835,
+    "payment_issue": 835,
+    "refund_request": 833,
+    "tariff_question": 832,
+    "technical_error": 832
   },
-  "hidden_dissatisfaction": 30,
-  "with_mistakes": 138,
+  "by_satisfaction": {
+    "neutral": 738,
+    "satisfied": 2409,
+    "unsatisfied": 1853
+  },
   "dialog_length_distribution": {
-    "6": 57,
-    "3": 11,
-    "4": 108,
-    "2": 105,
-    "5": 19
+    "2": 1510,
+    "3": 197,
+    "4": 1876,
+    "5": 303,
+    "6": 1114
   },
+  "hidden_dissatisfaction": 500,
   "mistake_types": {
-    "rude_tone": 31,
-    "ignored_question": 36,
-    "unnecessary_escalation": 32,
-    "incorrect_info": 29,
-    "no_resolution": 51
-  }
+    "ignored_question": 531,
+    "incorrect_info": 576,
+    "no_resolution": 812,
+    "rude_tone": 533,
+    "unnecessary_escalation": 543
+  },
+  "total": 5000,
+  "with_mistakes": 2254
 }
