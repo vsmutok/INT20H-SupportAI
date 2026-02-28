@@ -1,47 +1,34 @@
 {
   "total": 300,
   "by_intent": {
-    "refund_request": 66,
-    "account_access": 61,
-    "payment_issue": 32,
-    "technical_error": 43,
-    "other": 84,
-    "tariff_question": 14
+    "refund_request": 54,
+    "tariff_question": 87,
+    "payment_issue": 23,
+    "technical_error": 53,
+    "account_access": 53,
+    "other": 30
   },
   "by_satisfaction": {
-    "unsatisfied": 157,
-    "neutral": 142,
-    "satisfied": 1
+    "unsatisfied": 141,
+    "satisfied": 139,
+    "neutral": 20
   },
-  "avg_quality_score": 2.02,
+  "avg_quality_score": 3.04,
   "quality_score_distribution": {
-    "1": 141,
-    "2": 73,
-    "3": 26,
-    "4": 58,
-    "5": 2
+    "1": 38,
+    "2": 71,
+    "3": 73,
+    "4": 76,
+    "5": 42
   },
-  "hidden_dissatisfaction_count": 136,
-  "with_mistakes_count": 188,
+  "hidden_dissatisfaction_count": 26,
+  "with_mistakes_count": 168,
   "mistake_frequency": {
-    "rude_tone": 17,
-    "no_resolution": 156,
-    "incorrect_info": 22,
-    "unnecessary_escalation": 24,
-    "ignored_question": 2
+    "rude_tone": 25,
+    "no_resolution": 69,
+    "incorrect_info": 55,
+    "ignored_question": 26,
+    "unnecessary_escalation": 24
   },
-  "tone_agent_distribution": {
-    "rude": 28,
-    "professional": 264,
-    "casual": 8
-  },
-  "tone_client_distribution": {
-    "frustrated": 183,
-    "calm": 117
-  },
-  "resolution_distribution": {
-    "unresolved": 205,
-    "partially_resolved": 93,
-    "resolved": 2
-  }
+  "elapsed_seconds": 594.8
 }

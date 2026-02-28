@@ -22,15 +22,35 @@ Generating high-quality, diverse support datasets is hard. SupportAI solves this
 - **Deterministic Results**: Fixed seeds (`SEED=42`) for both Python random and LLM generation
 
 ### Analyzer (`analyze.py`)
-- **Independent LLM Analysis**: Each dialog is analyzed from scratch using the LLM (not copying generator metadata)
-- **Intent Classification**: Detects the customer's primary intent from the conversation content
-- **Satisfaction Assessment**: Determines real customer satisfaction: `satisfied`, `neutral`, `unsatisfied`
-- **Quality Scoring**: 1-5 scale with adjustments for agent mistakes and resolution status
-- **Agent Mistake Detection**: Identifies specific errors from the conversation
-- **Hidden Dissatisfaction Detection**: Detects when customers appear polite but are actually unsatisfied
-- **Tone Analysis**: Agent tone (`professional`/`casual`/`rude`) and client tone (`calm`/`frustrated`/`angry`)
-- **Resolution Tracking**: `resolved`, `partially_resolved`, `unresolved` with text summary
-- **Comparison Metrics**: Accuracy comparison between analyzer output and generator metadata
+- **Two-Tier Architecture**: Splits analysis into two specialized LLM passes for speed and accuracy:
+  - **Tier 1** (batch_size=15): Intent classification + satisfaction assessment
+  - **Tier 2** (batch_size=10): Quality scoring + agent mistake detection + hidden dissatisfaction
+- **Chain-of-thought reasoning**: LLM explains its reasoning before classifying, improving accuracy
+- **Intent Classification**: Detects the customer's primary intent with disambiguation rules for commonly confused categories
+- **Satisfaction Assessment**: Determines real customer satisfaction (`satisfied`, `neutral`, `unsatisfied`) with scenario-based hints
+- **Quality Scoring**: 1-5 scale based on agent helpfulness and response quality
+- **Agent Mistake Detection**: Identifies specific errors (`ignored_question`, `incorrect_info`, `rude_tone`, `no_resolution`, `unnecessary_escalation`) with strict evidence-based definitions
+- **Hidden Dissatisfaction Detection**: Detects when customers appear polite but are actually unsatisfied (extremely rare, <5%)
+- **Template Preprocessing**: Replaces unreplaced template variables (e.g., `{{Order Number}}`) with realistic values before analysis
+- **Partial Recovery**: If a batch partially fails, successfully parsed results are kept and only missing dialogs fall back to single-dialog analysis
+- **Comprehensive Comparison**: Per-class precision/recall/F1, confusion matrices, Jaccard similarity for all 5 metrics
+
+## Benchmark Results
+
+Analyzer v6 tested across multiple datasets with different characteristics:
+
+| Metric | 300 dialogs | 1000 dialogs | 1000 (from 5000) |
+|--------|:-----------:|:------------:|:----------------:|
+| **Intent accuracy** | 70.3% | 59.5% | 68.3% |
+| **Satisfaction accuracy** | 54.3% | 60.9% | 46.7% |
+| **Hidden dissatisfaction F1** | 0.54 | 0.54 | 0.48 |
+| **Quality score ±1** | 73.7% | 69.8% | 72.0% |
+| **Mistakes binary accuracy** | 70.7% | 70.3% | 71.4% |
+| **Mistakes Jaccard** | 0.54 | 0.51 | 0.55 |
+
+- **300 dialogs**: Original dataset (2-6 messages per dialog, no template artifacts)
+- **1000 dialogs**: Extended dataset (mostly 2-message dialogs, some `{{template}}` leftovers)
+- **1000 from 5000**: Stratified sample from 5000-dialog dataset (2-6 messages, clean templates, all 60 intent×satisfaction×quality combinations covered)
 
 ## Project Structure
 
@@ -156,14 +176,16 @@ This will:
 ### 2. Analyze Dataset
 ```bash
 uv run python analyze.py
+# Or analyze a custom dataset:
+uv run python -m src.analyzer.main path/to/dataset.json
 ```
 This will:
-1. Load `data/dataset.json`
-2. Analyze each dialog independently via LLM (batches of 5)
-3. Validate and normalize all analysis fields
-4. Compute adjusted quality scores (penalties for mistakes, bonuses for resolution)
+1. Load the dataset (default: `data/dataset.json`)
+2. Preprocess dialogs (replace template variables with realistic values)
+3. Analyze via two-tier LLM batching (Tier 1: intent + satisfaction, Tier 2: quality + mistakes + HD)
+4. Validate and normalize all analysis fields
 5. Save to `data/analysis.json` and `data/analysis_stats.json`
-6. Compare analyzer output vs generator metadata (accuracy metrics)
+6. Compare analyzer output vs generator metadata with detailed per-class metrics
 
 ## Output Format
 
@@ -197,14 +219,9 @@ Each analyzed entry contains:
   "analysis": {
     "intent": "payment_issue",
     "satisfaction": "satisfied",
-    "quality_score_raw": 4,
-    "quality_score": 5,
+    "quality_score": 4,
     "agent_mistakes": [],
-    "hidden_dissatisfaction": false,
-    "tone_agent": "professional",
-    "tone_client": "calm",
-    "resolution": "resolved",
-    "resolution_summary": "Agent provided clear payment instructions and resolved the issue."
+    "hidden_dissatisfaction": false
   }
 }
 ```
