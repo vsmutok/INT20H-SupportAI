@@ -109,9 +109,7 @@ def _compute_stats(output: list[dict]) -> dict:
 
         score = a.get("quality_score", 3)
         total_score += score
-        stats["quality_score_distribution"][str(score)] = (
-            stats["quality_score_distribution"].get(str(score), 0) + 1
-        )
+        stats["quality_score_distribution"][str(score)] = stats["quality_score_distribution"].get(str(score), 0) + 1
 
         if a.get("hidden_dissatisfaction"):
             stats["hidden_dissatisfaction_count"] += 1
@@ -141,52 +139,28 @@ def _precision_recall(tp: int, fp: int, fn: int) -> tuple[float, float, float]:
     return precision, recall, f1
 
 
-def _log_comparison(dataset: list[dict], analysis_results: list[dict]):
-    """Compare LLM analysis against generator metadata — all 5 task requirements."""
-    total = min(len(dataset), len(analysis_results))
-    if total == 0:
-        return
-
-    # Collect paired data
-    pairs = []
-    for i in range(total):
-        meta = dataset[i].get("metadata", {})
-        analysis = analysis_results[i]
-        pairs.append((meta, analysis))
-
-    logger.info("=" * 60)
-    logger.info("COMPARISON: Generator metadata vs. Analyzer output")
-    logger.info("=" * 60)
-
-    # -------------------------------------------------------------------
-    # 1. INTENT DETECTION ACCURACY
-    # -------------------------------------------------------------------
+def _log_intent_comparison(pairs: list[tuple], total: int):
+    """Log intent detection accuracy and confusion matrix."""
     logger.info("")
     logger.info("-" * 60)
     logger.info("1. INTENT DETECTION")
     logger.info("-" * 60)
 
-    intent_correct = sum(1 for m, a in pairs if m.get("intent") == a.get("intent"))
-    logger.info(f"  Overall accuracy: {intent_correct}/{total} ({100 * intent_correct / total:.1f}%)")
+    correct = sum(1 for m, a in pairs if m.get("intent") == a.get("intent"))
+    logger.info(f"  Overall accuracy: {correct}/{total} ({100 * correct / total:.1f}%)")
 
-    # Per-intent precision/recall
     for intent in VALID_INTENTS:
         tp = sum(1 for m, a in pairs if m.get("intent") == intent and a.get("intent") == intent)
         fp = sum(1 for m, a in pairs if m.get("intent") != intent and a.get("intent") == intent)
         fn = sum(1 for m, a in pairs if m.get("intent") == intent and a.get("intent") != intent)
         p, r, f1 = _precision_recall(tp, fp, fn)
-        actual_count = sum(1 for m, _ in pairs if m.get("intent") == intent)
-        pred_count = sum(1 for _, a in pairs if a.get("intent") == intent)
-        logger.info(
-            f"  {intent:20s}: P={p:.2f} R={r:.2f} F1={f1:.2f} "
-            f"(actual={actual_count}, predicted={pred_count})"
-        )
+        actual = sum(1 for m, _ in pairs if m.get("intent") == intent)
+        pred = sum(1 for _, a in pairs if a.get("intent") == intent)
+        logger.info(f"  {intent:20s}: P={p:.2f} R={r:.2f} F1={f1:.2f} (actual={actual}, pred={pred})")
 
-    # Top confusion pairs
     confusion = Counter()
     for m, a in pairs:
-        mi = m.get("intent", "?")
-        ai = a.get("intent", "?")
+        mi, ai = m.get("intent", "?"), a.get("intent", "?")
         if mi != ai:
             confusion[(mi, ai)] += 1
     if confusion:
@@ -194,34 +168,31 @@ def _log_comparison(dataset: list[dict], analysis_results: list[dict]):
         for (true_i, pred_i), count in confusion.most_common(5):
             logger.info(f"    {true_i} -> {pred_i}: {count}")
 
-    # -------------------------------------------------------------------
-    # 2. SATISFACTION ASSESSMENT
-    # -------------------------------------------------------------------
+    return correct
+
+
+def _log_satisfaction_comparison(pairs: list[tuple], total: int):
+    """Log satisfaction assessment accuracy."""
     logger.info("")
     logger.info("-" * 60)
     logger.info("2. SATISFACTION ASSESSMENT")
     logger.info("-" * 60)
 
-    sat_correct = sum(1 for m, a in pairs if m.get("satisfaction") == a.get("satisfaction"))
-    logger.info(f"  Overall accuracy: {sat_correct}/{total} ({100 * sat_correct / total:.1f}%)")
+    correct = sum(1 for m, a in pairs if m.get("satisfaction") == a.get("satisfaction"))
+    logger.info(f"  Overall accuracy: {correct}/{total} ({100 * correct / total:.1f}%)")
 
     for sat in ("satisfied", "neutral", "unsatisfied"):
         tp = sum(1 for m, a in pairs if m.get("satisfaction") == sat and a.get("satisfaction") == sat)
         fp = sum(1 for m, a in pairs if m.get("satisfaction") != sat and a.get("satisfaction") == sat)
         fn = sum(1 for m, a in pairs if m.get("satisfaction") == sat and a.get("satisfaction") != sat)
         p, r, f1 = _precision_recall(tp, fp, fn)
-        actual_count = sum(1 for m, _ in pairs if m.get("satisfaction") == sat)
-        pred_count = sum(1 for _, a in pairs if a.get("satisfaction") == sat)
-        logger.info(
-            f"  {sat:15s}: P={p:.2f} R={r:.2f} F1={f1:.2f} "
-            f"(actual={actual_count}, predicted={pred_count})"
-        )
+        actual = sum(1 for m, _ in pairs if m.get("satisfaction") == sat)
+        pred = sum(1 for _, a in pairs if a.get("satisfaction") == sat)
+        logger.info(f"  {sat:15s}: P={p:.2f} R={r:.2f} F1={f1:.2f} (actual={actual}, pred={pred})")
 
-    # Top confusion pairs
     sat_confusion = Counter()
     for m, a in pairs:
-        ms = m.get("satisfaction", "?")
-        as_ = a.get("satisfaction", "?")
+        ms, as_ = m.get("satisfaction", "?"), a.get("satisfaction", "?")
         if ms != as_:
             sat_confusion[(ms, as_)] += 1
     if sat_confusion:
@@ -229,34 +200,35 @@ def _log_comparison(dataset: list[dict], analysis_results: list[dict]):
         for (true_s, pred_s), count in sat_confusion.most_common(5):
             logger.info(f"    {true_s} -> {pred_s}: {count}")
 
-    # -------------------------------------------------------------------
-    # 3. HIDDEN DISSATISFACTION DETECTION
-    # -------------------------------------------------------------------
+    return correct
+
+
+def _log_hd_comparison(pairs: list[tuple], total: int):
+    """Log hidden dissatisfaction detection accuracy."""
     logger.info("")
     logger.info("-" * 60)
     logger.info("3. HIDDEN DISSATISFACTION DETECTION")
     logger.info("-" * 60)
 
-    hd_correct = sum(
-        1 for m, a in pairs
-        if m.get("hidden_dissatisfaction") == a.get("hidden_dissatisfaction")
-    )
+    hd_correct = sum(1 for m, a in pairs if m.get("hidden_dissatisfaction") == a.get("hidden_dissatisfaction"))
     logger.info(f"  Overall accuracy: {hd_correct}/{total} ({100 * hd_correct / total:.1f}%)")
 
-    tp_hd = sum(1 for m, a in pairs if m.get("hidden_dissatisfaction") and a.get("hidden_dissatisfaction"))
-    fp_hd = sum(1 for m, a in pairs if not m.get("hidden_dissatisfaction") and a.get("hidden_dissatisfaction"))
-    fn_hd = sum(1 for m, a in pairs if m.get("hidden_dissatisfaction") and not a.get("hidden_dissatisfaction"))
-    p_hd, r_hd, f1_hd = _precision_recall(tp_hd, fp_hd, fn_hd)
+    tp = sum(1 for m, a in pairs if m.get("hidden_dissatisfaction") and a.get("hidden_dissatisfaction"))
+    fp = sum(1 for m, a in pairs if not m.get("hidden_dissatisfaction") and a.get("hidden_dissatisfaction"))
+    fn = sum(1 for m, a in pairs if m.get("hidden_dissatisfaction") and not a.get("hidden_dissatisfaction"))
+    p, r, f1 = _precision_recall(tp, fp, fn)
 
-    actual_hd = sum(1 for m, _ in pairs if m.get("hidden_dissatisfaction"))
-    pred_hd = sum(1 for _, a in pairs if a.get("hidden_dissatisfaction"))
-    logger.info(f"  Precision: {p_hd:.2f} | Recall: {r_hd:.2f} | F1: {f1_hd:.2f}")
-    logger.info(f"  True positives: {tp_hd} | False positives: {fp_hd} | False negatives: {fn_hd}")
-    logger.info(f"  Actual count: {actual_hd} | Predicted count: {pred_hd}")
+    actual = sum(1 for m, _ in pairs if m.get("hidden_dissatisfaction"))
+    pred = sum(1 for _, a in pairs if a.get("hidden_dissatisfaction"))
+    logger.info(f"  Precision: {p:.2f} | Recall: {r:.2f} | F1: {f1:.2f}")
+    logger.info(f"  True positives: {tp} | False positives: {fp} | False negatives: {fn}")
+    logger.info(f"  Actual count: {actual} | Predicted count: {pred}")
 
-    # -------------------------------------------------------------------
-    # 4. QUALITY SCORE ASSESSMENT
-    # -------------------------------------------------------------------
+    return p, r, f1
+
+
+def _log_quality_comparison(pairs: list[tuple], total: int):
+    """Log quality score assessment accuracy."""
     logger.info("")
     logger.info("-" * 60)
     logger.info("4. QUALITY SCORE ASSESSMENT")
@@ -287,44 +259,34 @@ def _log_comparison(dataset: list[dict], analysis_results: list[dict]):
     logger.info(f"  Generator distribution: {dict(sorted(gen_dist.items()))}")
     logger.info(f"  Analyzer distribution:  {dict(sorted(ana_dist.items()))}")
 
-    # -------------------------------------------------------------------
-    # 5. AGENT MISTAKE DETECTION
-    # -------------------------------------------------------------------
+    return exact_match, close_match, mae
+
+
+def _log_mistakes_comparison(pairs: list[tuple], total: int):
+    """Log agent mistake detection accuracy."""
     logger.info("")
     logger.info("-" * 60)
     logger.info("5. AGENT MISTAKE DETECTION")
     logger.info("-" * 60)
 
-    # Binary: has any mistakes
-    binary_correct = sum(
-        1 for m, a in pairs
-        if bool(m.get("agent_mistakes")) == bool(a.get("agent_mistakes"))
-    )
+    binary_correct = sum(1 for m, a in pairs if bool(m.get("agent_mistakes")) == bool(a.get("agent_mistakes")))
     logger.info(f"  Has-mistakes binary accuracy: {binary_correct}/{total} ({100 * binary_correct / total:.1f}%)")
 
-    # Per-mistake-type precision/recall
     for mistake in AGENT_MISTAKES:
         tp = sum(
-            1 for m, a in pairs
-            if mistake in m.get("agent_mistakes", []) and mistake in a.get("agent_mistakes", [])
+            1 for m, a in pairs if mistake in m.get("agent_mistakes", []) and mistake in a.get("agent_mistakes", [])
         )
         fp = sum(
-            1 for m, a in pairs
-            if mistake not in m.get("agent_mistakes", []) and mistake in a.get("agent_mistakes", [])
+            1 for m, a in pairs if mistake not in m.get("agent_mistakes", []) and mistake in a.get("agent_mistakes", [])
         )
         fn = sum(
-            1 for m, a in pairs
-            if mistake in m.get("agent_mistakes", []) and mistake not in a.get("agent_mistakes", [])
+            1 for m, a in pairs if mistake in m.get("agent_mistakes", []) and mistake not in a.get("agent_mistakes", [])
         )
         p, r, f1 = _precision_recall(tp, fp, fn)
-        actual_count = sum(1 for m, _ in pairs if mistake in m.get("agent_mistakes", []))
-        pred_count = sum(1 for _, a in pairs if mistake in a.get("agent_mistakes", []))
-        logger.info(
-            f"  {mistake:25s}: P={p:.2f} R={r:.2f} F1={f1:.2f} "
-            f"(actual={actual_count}, predicted={pred_count})"
-        )
+        actual = sum(1 for m, _ in pairs if mistake in m.get("agent_mistakes", []))
+        pred = sum(1 for _, a in pairs if mistake in a.get("agent_mistakes", []))
+        logger.info(f"  {mistake:25s}: P={p:.2f} R={r:.2f} F1={f1:.2f} (actual={actual}, pred={pred})")
 
-    # Average Jaccard similarity
     jaccard_sum = 0
     for m, a in pairs:
         gen_set = set(m.get("agent_mistakes", []))
@@ -333,13 +295,36 @@ def _log_comparison(dataset: list[dict], analysis_results: list[dict]):
         if union:
             jaccard_sum += len(gen_set & ana_set) / len(union)
         else:
-            jaccard_sum += 1.0  # Both empty = perfect match
+            jaccard_sum += 1.0
     avg_jaccard = jaccard_sum / total if total > 0 else 0
     logger.info(f"  Average Jaccard similarity: {avg_jaccard:.2f}")
 
-    # -------------------------------------------------------------------
-    # SUMMARY TABLE
-    # -------------------------------------------------------------------
+    return binary_correct, avg_jaccard
+
+
+def _log_comparison(dataset: list[dict], analysis_results: list[dict]):
+    """Compare LLM analysis against generator metadata — all 5 task requirements."""
+    total = min(len(dataset), len(analysis_results))
+    if total == 0:
+        return
+
+    pairs = []
+    for i in range(total):
+        meta = dataset[i].get("metadata", {})
+        analysis = analysis_results[i]
+        pairs.append((meta, analysis))
+
+    logger.info("=" * 60)
+    logger.info("COMPARISON: Generator metadata vs. Analyzer output")
+    logger.info("=" * 60)
+
+    intent_correct = _log_intent_comparison(pairs, total)
+    sat_correct = _log_satisfaction_comparison(pairs, total)
+    p_hd, r_hd, f1_hd = _log_hd_comparison(pairs, total)
+    exact_match, close_match, mae = _log_quality_comparison(pairs, total)
+    binary_correct, avg_jaccard = _log_mistakes_comparison(pairs, total)
+
+    # Summary
     logger.info("")
     logger.info("=" * 60)
     logger.info("SUMMARY")
@@ -347,8 +332,11 @@ def _log_comparison(dataset: list[dict], analysis_results: list[dict]):
     logger.info(f"  Intent accuracy:           {100 * intent_correct / total:.1f}%")
     logger.info(f"  Satisfaction accuracy:      {100 * sat_correct / total:.1f}%")
     logger.info(f"  Hidden dissatisfaction F1:  {f1_hd:.2f} (P={p_hd:.2f}, R={r_hd:.2f})")
-    logger.info(f"  Quality score exact:        {100 * exact_match / total:.1f}% | +-1: {100 * close_match / total:.1f}% | MAE: {mae:.2f}")
-    logger.info(f"  Mistakes binary accuracy:   {100 * binary_correct / total:.1f}% | Jaccard: {avg_jaccard:.2f}")
+    exact_pct = 100 * exact_match / total
+    close_pct = 100 * close_match / total
+    logger.info(f"  Quality score exact:        {exact_pct:.1f}% | +-1: {close_pct:.1f}% | MAE: {mae:.2f}")
+    binary_pct = 100 * binary_correct / total
+    logger.info(f"  Mistakes binary accuracy:   {binary_pct:.1f}% | Jaccard: {avg_jaccard:.2f}")
     logger.info("=" * 60)
 
 

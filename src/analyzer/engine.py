@@ -46,10 +46,7 @@ class DatasetAnalyzer:
 
     def _preprocess_dialog(self, dialog: list[dict]) -> list[dict]:
         """Preprocess all messages in a dialog."""
-        return [
-            {"role": msg["role"], "text": self._preprocess_text(msg["text"])}
-            for msg in dialog
-        ]
+        return [{"role": msg["role"], "text": self._preprocess_text(msg["text"])} for msg in dialog]
 
     def _format_dialog(self, dialog: list[dict]) -> str:
         """Format dialog messages into a readable string for the LLM."""
@@ -195,10 +192,7 @@ class DatasetAnalyzer:
         results: list[dict | None] = [None] * batch_size
 
         if isinstance(parsed, dict):
-            if "results" in parsed and isinstance(parsed["results"], list):
-                parsed = parsed["results"]
-            else:
-                parsed = [parsed]
+            parsed = parsed["results"] if "results" in parsed and isinstance(parsed["results"], list) else [parsed]
 
         if not isinstance(parsed, list):
             return results
@@ -263,6 +257,87 @@ class DatasetAnalyzer:
             return [None] * len(batch)
 
     # ------------------------------------------------------------------
+    # Tier processing helper
+    # ------------------------------------------------------------------
+
+    def _run_tier_batches(
+        self,
+        preprocessed: list[dict],
+        batch_size: int,
+        tier_label: str,
+        runner,
+    ) -> list[dict | None]:
+        """Run a tier (1 or 2) over all preprocessed dialogs in batches."""
+        total = len(preprocessed)
+        num_batches = (total + batch_size - 1) // batch_size
+        logger.info(f"{tier_label}: {total} dialogs in {num_batches} batches (size={batch_size})...")
+        results: list[dict | None] = [None] * total
+
+        for i in range(0, total, batch_size):
+            batch = preprocessed[i : i + batch_size]
+            batch_num = i // batch_size + 1
+            batch_results = runner(batch)
+
+            for j, result in enumerate(batch_results):
+                results[i + j] = result
+
+            done = min(i + batch_size, total)
+            pct = done / total * 100
+            logger.info(f"  {tier_label[:2]} batch {batch_num}/{num_batches} — {done}/{total} ({pct:.0f}%)")
+
+        return results
+
+    # ------------------------------------------------------------------
+    # Merge tiers + fallback
+    # ------------------------------------------------------------------
+
+    def _merge_tiers(
+        self,
+        dialogs: list[dict],
+        tier1_results: list[dict | None],
+        tier2_results: list[dict | None],
+    ) -> list[dict]:
+        """Merge tier 1 and tier 2 results, falling back to single-dialog analysis."""
+        fallback_count = 0
+        final_results = []
+
+        for idx in range(len(dialogs)):
+            t1 = tier1_results[idx]
+            t2 = tier2_results[idx]
+
+            if t1 is not None and t2 is not None:
+                final_results.append({**t1, **t2})
+            elif t1 is not None:
+                fallback = self.analyze_dialog(dialogs[idx].get("dialog", []))
+                final_results.append(
+                    {
+                        **t1,
+                        "quality_score": fallback["quality_score"],
+                        "agent_mistakes": fallback["agent_mistakes"],
+                        "hidden_dissatisfaction": fallback["hidden_dissatisfaction"],
+                    }
+                )
+                fallback_count += 1
+            elif t2 is not None:
+                fallback = self.analyze_dialog(dialogs[idx].get("dialog", []))
+                final_results.append(
+                    {
+                        "intent": fallback["intent"],
+                        "satisfaction": fallback["satisfaction"],
+                        **t2,
+                    }
+                )
+                fallback_count += 1
+            else:
+                fallback_count += 1
+                final_results.append(self.analyze_dialog(dialogs[idx].get("dialog", [])))
+
+        if fallback_count > 0:
+            logger.warning(f"Recovered {fallback_count}/{len(dialogs)} dialogs via individual fallback")
+
+        return final_results
+
+    # ------------------------------------------------------------------
     # Main two-tier batch analysis
     # ------------------------------------------------------------------
 
@@ -288,76 +363,18 @@ class DatasetAnalyzer:
             preprocessed.append({"dialog": processed_dialog})
 
         # --- Tier 1: intent + satisfaction ---
-        num_t1 = (total + tier1_batch_size - 1) // tier1_batch_size
-        logger.info(f"Tier 1 (intent + satisfaction): {total} dialogs in {num_t1} batches (size={tier1_batch_size})...")
-        tier1_results: list[dict | None] = [None] * total
-
-        for i in range(0, total, tier1_batch_size):
-            batch = preprocessed[i : i + tier1_batch_size]
-            batch_num = i // tier1_batch_size + 1
-            batch_results = self._run_tier1_batch(batch)
-
-            for j, result in enumerate(batch_results):
-                tier1_results[i + j] = result
-
-            done = min(i + tier1_batch_size, total)
-            pct = done / total * 100
-            logger.info(f"  T1 batch {batch_num}/{num_t1} — {done}/{total} ({pct:.0f}%)")
+        tier1_results = self._run_tier_batches(
+            preprocessed, tier1_batch_size, "Tier 1 (intent + satisfaction)", self._run_tier1_batch
+        )
 
         # --- Tier 2: quality + mistakes + HD ---
-        num_t2 = (total + tier2_batch_size - 1) // tier2_batch_size
-        logger.info(f"Tier 2 (quality + mistakes + HD): {total} dialogs in {num_t2} batches (size={tier2_batch_size})...")
-        tier2_results: list[dict | None] = [None] * total
-
-        for i in range(0, total, tier2_batch_size):
-            batch = preprocessed[i : i + tier2_batch_size]
-            batch_num = i // tier2_batch_size + 1
-            batch_results = self._run_tier2_batch(batch)
-
-            for j, result in enumerate(batch_results):
-                tier2_results[i + j] = result
-
-            done = min(i + tier2_batch_size, total)
-            pct = done / total * 100
-            logger.info(f"  T2 batch {batch_num}/{num_t2} — {done}/{total} ({pct:.0f}%)")
+        tier2_results = self._run_tier_batches(
+            preprocessed, tier2_batch_size, "Tier 2 (quality + mistakes + HD)", self._run_tier2_batch
+        )
 
         # --- Merge tiers + fallback for missing ---
         logger.info("Merging tiers and recovering missing entries...")
-        fallback_count = 0
-        final_results = []
-
-        for idx in range(total):
-            t1 = tier1_results[idx]
-            t2 = tier2_results[idx]
-
-            if t1 is not None and t2 is not None:
-                final_results.append({**t1, **t2})
-            elif t1 is not None:
-                # Have tier1 but missing tier2 — fallback for tier2 fields
-                fallback = self.analyze_dialog(dialogs[idx].get("dialog", []))
-                final_results.append({
-                    **t1,
-                    "quality_score": fallback["quality_score"],
-                    "agent_mistakes": fallback["agent_mistakes"],
-                    "hidden_dissatisfaction": fallback["hidden_dissatisfaction"],
-                })
-                fallback_count += 1
-            elif t2 is not None:
-                # Have tier2 but missing tier1 — fallback for tier1 fields
-                fallback = self.analyze_dialog(dialogs[idx].get("dialog", []))
-                final_results.append({
-                    "intent": fallback["intent"],
-                    "satisfaction": fallback["satisfaction"],
-                    **t2,
-                })
-                fallback_count += 1
-            else:
-                # Both missing — full fallback
-                fallback_count += 1
-                final_results.append(self.analyze_dialog(dialogs[idx].get("dialog", [])))
-
-        if fallback_count > 0:
-            logger.warning(f"Recovered {fallback_count}/{total} dialogs via individual fallback")
+        final_results = self._merge_tiers(dialogs, tier1_results, tier2_results)
 
         logger.success(f"Analysis complete — {total} dialogs analyzed")
         return final_results
