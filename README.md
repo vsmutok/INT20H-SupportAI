@@ -37,7 +37,7 @@ Generating high-quality, diverse support datasets is hard. SupportAI solves this
 
 ## Benchmark Results
 
-Analyzer v6 tested across multiple datasets with different characteristics:
+Analyzer tested across multiple datasets with different characteristics:
 
 | Metric | 300 dialogs | 1000 dialogs | 1000 (from 5000) |
 |--------|:-----------:|:------------:|:----------------:|
