@@ -1,5 +1,5 @@
 """
-Two-tier prompt templates for the dataset analyzer (v6).
+Two-tier prompt templates for the dataset analyzer.
 
 All v1-v5 learnings combined + disambiguation hints:
 - Intent: disambiguation rules for top confusion pairs (general, universal)

@@ -11,7 +11,7 @@ from src.config.logger import logger
 
 def main():
     logger.info("=" * 60)
-    logger.info("Starting dataset analysis process (v6 — disambiguation hints)")
+    logger.info("Starting dataset analysis proces")
     logger.info("=" * 60)
 
     # Accept dataset path from command line
@@ -29,7 +29,7 @@ def main():
     analyzer = DatasetAnalyzer(ollama_model="llama3.1:8b")
 
     # Analyze all dialogs
-    logger.info(f"Step 2/3: Analyzing {len(dataset)} dialogs with two-tier LLM (v6)...")
+    logger.info(f"Step 2/3: Analyzing {len(dataset)} dialogs with two-tier LLM...")
     start_time = time.time()
     analysis_results = analyzer.analyze_batch(dataset)
     elapsed = time.time() - start_time

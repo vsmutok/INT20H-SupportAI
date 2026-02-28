@@ -18,7 +18,7 @@ def main():
     base_dialogs = augmenter.load_base_dataset()
 
     # Step 2: Analyze subset with LLM
-    sample_size = min(100, len(base_dialogs))
+    sample_size = min(1_000, len(base_dialogs))
     logger.info(f"Step 2/5: Analyzing {sample_size} sample dialogs with LLM (out of {len(base_dialogs)} total)...")
     analyzed_sample = augmenter.analyze_dialog_batch(base_dialogs[:sample_size], batch_size=10)
 
@@ -41,7 +41,7 @@ def main():
     augmenter.augment_with_variations(analyzed_sample)
 
     # Step 5: Expand to target size with max diversity
-    target_count = 50_000
+    target_count = 5_000
     logger.info(f"Step 5/5: Expanding dataset to {target_count} dialogs...")
     expanded_dataset = augmenter.expand_dataset(analyzed_sample, target_count=target_count)
 
